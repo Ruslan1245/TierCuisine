@@ -236,15 +236,8 @@
   .tier-cuisine-dual-products__rule-full {
     width: 100%;
     height: 0;
-    margin: 0 0 2.5rem;
     border: none;
     border-top: 1px solid var(--tiercuisine-gold-500);
-  }
-
-  @media screen and (min-width: 750px) {
-    .tier-cuisine-dual-products__rule-full {
-      margin-bottom: 3rem;
-    }
   }
 
   .tier-cuisine-dual-products__grid {
@@ -285,8 +278,9 @@
     flex-wrap: nowrap;
     align-items: stretch;
     justify-content: center;
-    gap: 70px;
-    width: 100%;
+    gap: 60px;
+    width: 90%;
+    flex: 1 1 auto;
   }
 
   .tier-cuisine-dual-products__block {
@@ -301,10 +295,10 @@
   }
 
   .tier-cuisine-dual-products__circle {
-    width: min(100%, 240px);
+    width: min(100%, 179px);
     aspect-ratio: 1;
     border-radius: 50%;
-    background: var(--tc-circle-bg, var(--tiercuisine-brightgreen---300));
+    /* background: var(--tc-circle-bg, var(--tiercuisine-brightgreen---300)); */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -409,13 +403,45 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     width: 100%;
     min-width: 0;
+    height: 100%;
+    overflow: hidden;
+    padding-top: 30px;
   }
 
   @media screen and (min-width: 750px) {
     .tier-cuisine-dual-products__col {
-      padding-inline: clamp(0.5rem, 2vw, 1.5rem);
+      padding-top: 60px;
+    }
+  }
+
+  @media screen and (min-width: 750px) and (max-width: 1279px) {
+    .tier-cuisine-dual-products__stack {
+      flex-wrap: wrap;
+      align-content: flex-start;
+      justify-content: center;
+      row-gap: 2.5rem;
+    }
+
+    .tier-cuisine-dual-products__block {
+      flex: 0 0 calc((100% - 70px) / 2);
+      max-width: calc((100% - 70px) / 2);
+    }
+  }
+
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .tier-cuisine-dual-products__stack {
+      flex-wrap: nowrap;
+      flex-direction: column;
+      row-gap: 0;
+    }
+
+    .tier-cuisine-dual-products__block {
+      flex: none;
+      max-width: 22rem;
+      width: 100%;
     }
   }
 {% endstylesheet %}
