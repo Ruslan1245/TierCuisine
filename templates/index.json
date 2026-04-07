@@ -413,7 +413,8 @@
         "product": "enten-ragout",
         "button_label": "In den Warenkorb",
         "button_background": "#1a1a1a",
-        "button_text_color": "#ffffff"
+        "button_text_color": "#ffffff",
+        "right_image": "shopify://shop_images/Tiercuisine_sensible_katzen.jpg"
       }
     },
     "product_list_fa6P9H": {
