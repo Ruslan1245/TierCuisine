@@ -14,8 +14,10 @@
       "name": "Tier Cuisine Hero",
       "settings": {
         "section_height": 820,
-        "left_fallback_color": "#D4C4B0",
-        "right_fallback_color": "#D4C4B0",
+        "image_left": "shopify://shop_images/hero_bg_1.png",
+        "left_fallback_color": "#d4c4b0",
+        "image_right": "shopify://shop_images/hero_bg_2.png",
+        "right_fallback_color": "#d4c4b0",
         "subtitle": "<p>Gesundes Futter. <em>Echter Geschmack.</em></p>",
         "intro_text": "Jetzt Lieblingsfutter entdecken:",
         "button_1_label": "Für Katzen",
