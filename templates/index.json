@@ -207,9 +207,9 @@
         "badge_bg": "#c7cc93",
         "icons_row_svg": "<svg width=\"360\" height=\"69\" viewbox=\"0 0 360 69\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"83\" height=\"69\" rx=\"16\" fill=\"#6B7560\"></rect>\n  <rect x=\"89\" width=\"83\" height=\"69\" rx=\"16\" fill=\"#6B7560\"></rect>\n  <rect x=\"187\" width=\"82\" height=\"69\" rx=\"16\" fill=\"#6B7560\"></rect>\n  <rect x=\"277\" width=\"83\" height=\"69\" rx=\"16\" fill=\"#6B7560\"></rect>\n</svg>",
         "button_1_label": "Für Katzen",
-        "button_1_link": "",
+        "button_1_link": "#",
         "button_2_label": "Für Hunde",
-        "button_2_link": ""
+        "button_2_link": "#"
       }
     },
     "product_list_fa6P9H": {
