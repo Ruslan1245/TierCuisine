@@ -1,0 +1,420 @@
+{% liquid
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+  assign widths = '375, 550, 750, 1100, 1500, 2200, 3000, 3840'
+  assign sizes_half = '(min-width: 750px) 50vw, 100vw'
+  assign alt_left = shop.name
+  assign alt_right = shop.name
+  assign alt_heading = shop.name
+  if section.settings.image_left != blank
+    assign alt_left = section.settings.image_left.alt | default: shop.name
+  endif
+  if section.settings.image_right != blank
+    assign alt_right = section.settings.image_right.alt | default: shop.name
+  endif
+  if section.settings.heading_svg != blank
+    assign alt_heading = section.settings.heading_svg.alt | default: shop.name
+  endif
+%}
+
+<div
+  class="section section--full-width tier-cuisine-hero"
+  style="--tier-hero-height: {{ section.settings.section_height }}px;"
+  id="TierCuisineHero-{{ section.id }}"
+>
+  <div class="tier-cuisine-hero__grid">
+    <div class="tier-cuisine-hero__col tier-cuisine-hero__col--left">
+      <div class="tier-cuisine-hero__media" style="--tier-hero-fallback-bg: {{ section.settings.left_fallback_color }};">
+        {%- if section.settings.image_left != blank -%}
+          {{
+            section.settings.image_left
+            | image_url: width: 3840
+            | image_tag:
+              width: section.settings.image_left.width,
+              widths: widths,
+              height: section.settings.image_left.height,
+              sizes: sizes_half,
+              loading: 'lazy',
+              fetchpriority: fetch_priority,
+              class: 'tier-cuisine-hero__img',
+              alt: alt_left
+          }}
+        {%- endif -%}
+      </div>
+
+      <div class="tier-cuisine-hero__content">
+        {%- if section.settings.heading_svg != blank -%}
+          <div class="tier-cuisine-hero__title-wrap">
+            {{
+              section.settings.heading_svg
+              | image_url: width: 2000
+              | image_tag:
+                class: 'tier-cuisine-hero__title-svg',
+                loading: 'lazy',
+                alt: alt_heading
+            }}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.subtitle != blank -%}
+          <div class="tier-cuisine-hero__subtitle rte">
+            {{ section.settings.subtitle }}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.intro_text != blank -%}
+          <p class="tier-cuisine-hero__intro">{{ section.settings.intro_text }}</p>
+        {%- endif -%}
+
+        <div class="tier-cuisine-hero__actions">
+          {%- if section.settings.button_1_label != blank -%}
+            <a
+              class="tier-cuisine-hero__btn"
+              href="{% if section.settings.button_1_link != blank %}{{ section.settings.button_1_link }}{% else %}#{% endif %}"
+              {% if section.settings.button_1_link == blank %}
+                aria-disabled="true"
+              {% endif %}
+            >
+              <span class="tier-cuisine-hero__btn-label">{{ section.settings.button_1_label }}</span>
+              <span class="tier-cuisine-hero__btn-icon" aria-hidden="true">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 36.6667C29.2047 36.6667 36.6666 29.2048 36.6666 20C36.6666 10.7953 29.2047 3.33337 20 3.33337C10.7952 3.33337 3.33331 10.7953 3.33331 20C3.33331 29.2048 10.7952 36.6667 20 36.6667Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M20 26.6667L26.6667 20L20 13.3334" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M13.3333 20H26.6666" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+          {%- endif -%}
+
+          {%- if section.settings.button_2_label != blank -%}
+            <a
+              class="tier-cuisine-hero__btn"
+              href="{% if section.settings.button_2_link != blank %}{{ section.settings.button_2_link }}{% else %}#{% endif %}"
+              {% if section.settings.button_2_link == blank %}
+                aria-disabled="true"
+              {% endif %}
+            >
+              <span class="tier-cuisine-hero__btn-label">{{ section.settings.button_2_label }}</span>
+              <span class="tier-cuisine-hero__btn-icon" aria-hidden="true">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 36.6667C29.2047 36.6667 36.6666 29.2048 36.6666 20C36.6666 10.7953 29.2047 3.33337 20 3.33337C10.7952 3.33337 3.33331 10.7953 3.33331 20C3.33331 29.2048 10.7952 36.6667 20 36.6667Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M20 26.6667L26.6667 20L20 13.3334" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M13.3333 20H26.6666" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-cuisine-hero__col tier-cuisine-hero__col--right">
+      <div class="tier-cuisine-hero__media" style="--tier-hero-fallback-bg: {{ section.settings.right_fallback_color }};">
+        {%- if section.settings.image_right != blank -%}
+          {{
+            section.settings.image_right
+            | image_url: width: 3840
+            | image_tag:
+              width: section.settings.image_right.width,
+              widths: widths,
+              height: section.settings.image_right.height,
+              sizes: sizes_half,
+              loading: 'lazy',
+              fetchpriority: fetch_priority,
+              class: 'tier-cuisine-hero__img',
+              alt: alt_right
+          }}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .tier-cuisine-hero {
+    --tier-hero-height: 820px;
+  }
+
+  .tier-cuisine-hero__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    width: 100%;
+    height: var(--tier-hero-height);
+    min-height: 0;
+  }
+
+  .tier-cuisine-hero__col {
+    position: relative;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .tier-cuisine-hero__col--left {
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+
+  .tier-cuisine-hero__media {
+    position: absolute;
+    inset: 0;
+    background-color: var(--tier-hero-fallback-bg, transparent);
+  }
+
+  .tier-cuisine-hero__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .tier-cuisine-hero__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .tier-cuisine-hero__title-wrap {
+    margin-bottom: 24px;
+    max-width: 100%;
+  }
+
+  .tier-cuisine-hero__title-svg {
+    display: block;
+    max-width: min(100%, 420px);
+    height: auto;
+    margin-inline: auto;
+  }
+
+  .tier-cuisine-hero__subtitle {
+    font-family: var(--font-body--family);
+    font-weight: 500;
+    font-size: clamp(1.375rem, 4.2vw, 2.5rem);
+    line-height: 130%;
+    color: #fff;
+    margin-bottom: 2.5rem;
+    max-width: 36rem;
+  }
+
+  .tier-cuisine-hero__subtitle p {
+    margin: 0;
+  }
+
+  .tier-cuisine-hero__intro {
+    font-family: var(--font-body--family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.4;
+    text-align: center;
+    color: #000;
+    margin: 0 0 34px;
+    max-width: 28rem;
+  }
+
+  .tier-cuisine-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .tier-cuisine-hero__btn {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    box-sizing: border-box;
+    width: 256px;
+    max-width: 100%;
+    height: 62px;
+    box-sizing: border-box;
+    padding: 11px 10px;
+    background: #000;
+    color: #fff;
+    font-family: var(--font-body--family);
+    font-weight: 400;
+    font-size: clamp(1rem, 2.8vw, 1.5rem);
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .tier-cuisine-hero__btn:hover {
+    opacity: 0.88;
+  }
+
+  .tier-cuisine-hero__btn[aria-disabled='true'] {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .tier-cuisine-hero__btn-label {
+    flex: 0 1 auto;
+  }
+
+  .tier-cuisine-hero__btn-icon {
+    flex-shrink: 0;
+    display: flex;
+    line-height: 0;
+  }
+
+  .tier-cuisine-hero__btn-icon svg {
+    display: block;
+  }
+
+  @media screen and (max-width: 749px) {
+    .tier-cuisine-hero__grid {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+
+    .tier-cuisine-hero__col--left {
+      min-height: min(72svh, 560px);
+    }
+
+    .tier-cuisine-hero__col--right {
+      min-height: min(42svh, 360px);
+    }
+
+    .tier-cuisine-hero__intro {
+      margin-bottom: 1.5rem;
+    }
+
+    .tier-cuisine-hero__actions {
+      flex-direction: column;
+      width: 100%;
+      max-width: 20rem;
+    }
+
+    .tier-cuisine-hero__btn {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .tier-cuisine-hero__subtitle {
+      font-size: 40px;
+      margin-bottom: 94px;
+    }
+
+    .tier-cuisine-hero__btn {
+      font-size: 24px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tier Cuisine Hero",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "range",
+      "id": "section_height",
+      "min": 400,
+      "max": 1200,
+      "step": 10,
+      "unit": "px",
+      "label": "Висота секції (десктоп)",
+      "default": 820
+    },
+    {
+      "type": "header",
+      "content": "Зображення"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_left",
+      "label": "Ліве фото (50%)"
+    },
+    {
+      "type": "color",
+      "id": "left_fallback_color",
+      "label": "Колір фону лівої колонки (якщо немає фото)",
+      "default": "#D4C4B0"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right",
+      "label": "Праве фото (50%)"
+    },
+    {
+      "type": "color",
+      "id": "right_fallback_color",
+      "label": "Колір фону правої колонки (якщо немає фото)",
+      "default": "#D4C4B0"
+    },
+    {
+      "type": "header",
+      "content": "Контент (ліва колонка)"
+    },
+    {
+      "type": "image_picker",
+      "id": "heading_svg",
+      "label": "Заголовок (SVG або зображення)"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Підзаголовок",
+      "default": "<p>Gesundes Futter. <em>Echter Geschmack.</em></p>"
+    },
+    {
+      "type": "textarea",
+      "id": "intro_text",
+      "label": "Текст над кнопками",
+      "default": "Jetzt Lieblingsfutter entdecken:"
+    },
+    {
+      "type": "header",
+      "content": "Кнопки"
+    },
+    {
+      "type": "text",
+      "id": "button_1_label",
+      "label": "Кнопка 1 — текст",
+      "default": "Für Katzen"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Кнопка 1 — посилання"
+    },
+    {
+      "type": "text",
+      "id": "button_2_label",
+      "label": "Кнопка 2 — текст",
+      "default": "Für Hunde"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Кнопка 2 — посилання"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tier Cuisine Hero",
+      "category": "Banners"
+    }
+  ]
+}
+{% endschema %}
