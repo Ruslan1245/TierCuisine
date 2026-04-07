@@ -250,12 +250,25 @@
             "fallback_price": "12,99 EUR",
             "fallback_link": ""
           }
+        },
+        "slide_HVBtmH": {
+          "type": "slide",
+          "settings": {
+            "product": "",
+            "card_bg": "#ccc0b0",
+            "image": "shopify://shop_images/slider_produtc_4.png",
+            "category": "VITALITY KATZEN SNACK",
+            "product_title": "IMMUN BOOST",
+            "fallback_price": "12,99 EUR",
+            "fallback_link": ""
+          }
         }
       },
       "block_order": [
         "slide_EC4xYG",
         "slide_wDfrRn",
-        "slide_UybBFM"
+        "slide_UybBFM",
+        "slide_HVBtmH"
       ],
       "name": "TC products slider",
       "settings": {
