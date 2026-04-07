@@ -381,6 +381,22 @@
         "button_link": ""
       }
     },
+    "tier_cuisine_kitchen_video_9fgtAa": {
+      "type": "tier-cuisine-kitchen-video",
+      "name": "TC kitchen video",
+      "settings": {
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 60,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 48,
+        "section_background": "#d2bd92",
+        "title": "<p>In unserer <em>Küche mit Liebe & Sorgfalt</em> für dein Tier komponiert und entwickelt</p>",
+        "subtitle": "<p>Der Weg zur Gesundheit führt durch die Küche</p>",
+        "video_url": "",
+        "video_link_label": "Video abspielen",
+        "video_cta_label": "VIDEO ANSEHEN"
+      }
+    },
     "product_list_fa6P9H": {
       "type": "product-list",
       "blocks": {
@@ -667,6 +683,7 @@
     "tier_cuisine_products_carousel_pwTLDj",
     "tier_cuisine_mission_tgdAtx",
     "tier_cuisine_ingredients_compare_Y7gaMp",
+    "tier_cuisine_kitchen_video_9fgtAa",
     "product_list_fa6P9H",
     "section_GAeaWB"
   ]
