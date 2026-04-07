@@ -1,14 +1,3 @@
-{%- liquid
-  assign vs_svg_left_alt = ''
-  assign vs_svg_right_alt = ''
-  if section.settings.svg_left != blank
-    assign vs_svg_left_alt = section.settings.svg_left.alt | default: ''
-  endif
-  if section.settings.svg_right != blank
-    assign vs_svg_right_alt = section.settings.svg_right.alt | default: ''
-  endif
--%}
-
 <div
   class="section section--full-width tier-cuisine-vitality-snacks"
   id="TierCuisineVitalitySnacks-{{ section.id }}"
@@ -35,34 +24,24 @@
       </div>
     {%- endif -%}
 
-    {%- if section.settings.svg_left != blank or section.settings.svg_right != blank -%}
+    {%- if section.settings.svg_code_left != blank or section.settings.svg_code_right != blank -%}
       <div class="tier-cuisine-vitality-snacks__svg-row">
-        {%- if section.settings.svg_left != blank -%}
+        {%- if section.settings.svg_code_left != blank -%}
           <div class="tier-cuisine-vitality-snacks__svg-cell">
-            {{
-              section.settings.svg_left
-              | image_url: width: 1600
-              | image_tag:
-                loading: 'lazy',
-                class: 'tier-cuisine-vitality-snacks__svg-img',
-                widths: '300, 400, 600, 800, 1200, 1600',
-                sizes: '(min-width: 750px) min(45vw, 720px), 88vw',
-                alt: vs_svg_left_alt
-            }}
+            <div class="tier-cuisine-vitality-snacks__svg-inline">
+              {% # theme-check-disable UnknownFilter %}
+              {{ section.settings.svg_code_left | strip | raw }}
+              {% # theme-check-enable UnknownFilter %}
+            </div>
           </div>
         {%- endif -%}
-        {%- if section.settings.svg_right != blank -%}
+        {%- if section.settings.svg_code_right != blank -%}
           <div class="tier-cuisine-vitality-snacks__svg-cell">
-            {{
-              section.settings.svg_right
-              | image_url: width: 1600
-              | image_tag:
-                loading: 'lazy',
-                class: 'tier-cuisine-vitality-snacks__svg-img',
-                widths: '300, 400, 600, 800, 1200, 1600',
-                sizes: '(min-width: 750px) min(45vw, 720px), 88vw',
-                alt: vs_svg_right_alt
-            }}
+            <div class="tier-cuisine-vitality-snacks__svg-inline">
+              {% # theme-check-disable UnknownFilter %}
+              {{ section.settings.svg_code_right | strip | raw }}
+              {% # theme-check-enable UnknownFilter %}
+            </div>
           </div>
         {%- endif -%}
       </div>
@@ -164,11 +143,18 @@
     justify-content: center;
   }
 
-  .tier-cuisine-vitality-snacks__svg-img {
+  .tier-cuisine-vitality-snacks__svg-inline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .tier-cuisine-vitality-snacks__svg-inline svg {
     width: 100%;
     height: auto;
-    display: block;
     max-width: 100%;
+    display: block;
   }
 {% endstylesheet %}
 
@@ -253,18 +239,16 @@
       "content": "SVG illustrations"
     },
     {
-      "type": "paragraph",
-      "content": "Upload SVG files (or PNG). Spacing is controlled below."
+      "type": "textarea",
+      "id": "svg_code_left",
+      "label": "SVG code (left)",
+      "info": "Paste the full inline SVG markup (starts with <svg ...>)."
     },
     {
-      "type": "image_picker",
-      "id": "svg_left",
-      "label": "SVG / image (left)"
-    },
-    {
-      "type": "image_picker",
-      "id": "svg_right",
-      "label": "SVG / image (right)"
+      "type": "textarea",
+      "id": "svg_code_right",
+      "label": "SVG code (right)",
+      "info": "Paste the full inline SVG markup (starts with <svg ...>)."
     },
     {
       "type": "range",
