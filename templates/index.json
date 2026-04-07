@@ -392,7 +392,8 @@
         "section_background": "#d2bd92",
         "title": "<p>In unserer <em>Küche mit Liebe & Sorgfalt</em> für dein Tier komponiert und entwickelt</p>",
         "subtitle": "<p>Der Weg zur Gesundheit führt durch die Küche</p>",
-        "video_url": "",
+        "cover_image": "shopify://shop_images/video_preview.png",
+        "video_url": "#",
         "video_link_label": "Video abspielen",
         "video_cta_label": "VIDEO ANSEHEN"
       }
