@@ -1,0 +1,122 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "gp_section_589759276403131364": {
+      "settings": {
+        "checksum": "6d3d0a07287f5249ce0fea6c510928fe5803deb6cb316b1113a0b2d301b4761b_1_1_1_0__1",
+        "gg6JKL74YF4_text": "<p>Welcome to GemOrganic.<br>A solution to enhance your quality of life through skin care.</p>",
+        "ggU5T8kEc-U_text": "<p>About Us</p>",
+        "section_preload": "true"
+      },
+      "type": "gp-section-589759276403131364"
+    },
+    "gp_section_589759276805784548": {
+      "settings": {
+        "checksum": "fe76bf90c6d71d772606ebc3e3b8d03788f4247437166d1f5f3cd947c701392a_1_1_1_0__1",
+        "gg5XP8u5oyz_text": "<p>Research and innovation are at the core of our mission, and our dedication to science has established the brand as a leader in the advanced skincare arena.&nbsp;<br><br>The company’s founding was the direct result of a revolutionary discovery that set the standard for antioxidant formulation. We continue to pioneer next-generation products that will optimize the health and beauty of the skin—and change the face of skincare for years to come.</p>",
+        "ggWTRu2fYr0_text": "<p>We continue to&nbsp;<br>pioneer next-generation products</p>",
+        "ggfTCleBG2r_text": "<p><span style=\"color:#242424;\"><strong>Clara Christine</strong></span> / CEO</p>"
+      },
+      "type": "gp-section-589759276805784548"
+    },
+    "gp_section_589759277258769173": {
+      "settings": {
+        "checksum": "606d28ae2e2798db261753d1b7fe161b19ca2c2b8f9b1e776153defa9dfdaa31_1_1_1_0__1",
+        "gg5lkBG6tMv_text": "<p>150+</p>",
+        "ggQqZ5-DJo-_text": "<p>Skin-improving formulas exclusively for all skin types.</p>",
+        "gggFIj4Uw9L_text": "<p>Physicians and skincare professionals define cosmeceuticals as products on the cutting-edge between cosmetics and pharmaceuticals. Active ingredients in cosmeceuticals are expected to be clinically proven to enhance skincare efficacy.&nbsp;<br><br>Our products provide scientifically proven skin improvement crafted in elegant formulations for customized skincare regimens.</p>",
+        "ggqVC75wDgK_text": "<p>7M+</p>",
+        "ggq__-Ir0R3_text": "<p>460K+</p>",
+        "ggreA-KFvfg_text": "<p>Gempage User Groups</p>",
+        "ggtb1EFcKW6_text": "<p>Monthly Visits</p>",
+        "ggyEAErkp8e_text": "<p>Certified Professionals</p>"
+      },
+      "type": "gp-section-589759277258769173"
+    },
+    "gp_section_589759277376209892": {
+      "settings": {
+        "checksum": "9ba6493255ddf2c5ad4ac8ff565274af584e679823ae2cf8ef7e56fa1a5cb12e_1_1_1_0__1",
+        "ggKdDV4GjzI_text": "<p>100% Paraben Free</p>",
+        "ggZ2FTAfENE_text": "<p>Natural Ingredients</p>",
+        "ggfqNBe_599_text": "<p>Not Tested On Animals</p>",
+        "ggkuZlTEhZE_text": "<p>All products sold on the market are committed to not testing on animals</p>",
+        "ggnLJsXsKpD_text": "<p>All products are carefully lab tested with international standards</p>",
+        "ggqjeCXgvbN_text": "<p>100% paraben free to limit irritation to the most sensitive skin</p>",
+        "ggrtz36sZaj_text": "<p>Produced entirely from natural ingredients, safe for all skin type</p>",
+        "ggtm7j3tkCR_text": "<p>100% Laboratory Tested</p>"
+      },
+      "type": "gp-section-589759277376209892"
+    },
+    "gp_section_589759277879526388": {
+      "settings": {
+        "checksum": "bac4a8e138f4989161b088cadbfd703265eb769165d47a3d1c8db2160e701e60_1_1_1_0__1",
+        "ggh93av7tnB_text": "<p>Organic skincare for&nbsp;<br>your collection</p>",
+        "ggl9yIlQoYb_text": "<p>NEW COLLECTION&nbsp;</p>",
+        "ggo0Eperr4X_label": "Shop Now",
+        "ggt103RD2zy_text": "<p>Need help getting started?&nbsp;<br>Let’s take a look at our Organtic Collection&nbsp;</p>"
+      },
+      "type": "gp-section-589759277879526388"
+    },
+    "gp_section_589759277980189461": {
+      "settings": {
+        "checksum": "1d92d58058918e816e5fd8cf9a00049181e4a763305475e2fcd9755fecc8fa45_1_1_1_0__1",
+        "gg284F1CruU_text": "<p>An advanced skincare backed by science.</p>",
+        "gg7Xpf9e9y6_text": "<p>We has partnered with ReSurge International to advance first-generation women reconstructive surgeons in underserved parts of the world.&nbsp;<br><br>Together, we created the Pioneering Women in Reconstructive Surgery (PWRS) initiative to support these inspiring women through surgical training, leadership development and mentorship networking.</p>",
+        "ggBwnQU3pg-_text": "<p>Our mission is to improve skin health. Dedicated to this purpose, we make one simple promise—to provide advanced skincare backed by science.<br><br>Born from decades of skin cancer research that led to pivotal breakthroughs in antioxidants, our high potency formulas are concentrated in pure actives and proven to penetrate optimally into skin.</p>",
+        "ggJKcxkrblv_text": "<p>Our Impact</p>",
+        "ggqHlEU4njJ_text": "<p>Mission &amp; Vission</p>"
+      },
+      "type": "gp-section-589759277980189461"
+    },
+    "gp_section_589759278600946629": {
+      "settings": {
+        "checksum": "a0ce665dff95a967a8757c0e6b4bcdfa751f4184a7db748de852c49cde89fa20_1_1_1_0__1",
+        "gg-TeT2-PqK_text": "<p>“This B5 Gel Treatment with Hyaluronic Acid and Antioxidant Vitamin B5 is a soothing skin care treatment that hydrates the skin without causing oiliness.”</p>",
+        "gg3DCNhdCC6_text": "<p>What Our Customers Are Saying</p>",
+        "ggERl2la8Ci_text": "<p>\"The formula is a thick serum that sinks into the skin very quickly. There is virtually no drying-down time needed. I use this as my moisturizer, and it helps to plump and smooth my skin. It does not pill up or cause my foundation to look different.”</p>",
+        "ggI9PKEl8i1_text": "<p>What A Soothing Skin Care Treatment !</p>",
+        "ggJqbiZBRJF_text": "<p>Awesome Product</p>",
+        "ggLROpBmYMK_text": "<p><span style=\"color:#232323;\"><strong>Ryan S.</strong></span> / Design Director</p>",
+        "ggNSzfe8UjB_text": "<p>What A Soothing Skin Care Treatment !</p>",
+        "ggWYO4d9-v1_text": "<p>“This B5 Gel Treatment with Hyaluronic Acid and Antioxidant Vitamin B5 is a soothing skin care treatment that hydrates the skin without causing oiliness.”</p>",
+        "ggX3JYQ18sh_text": "<p><span style=\"color:#232323;\"><strong>Ryan S.</strong></span> / Design Director</p>",
+        "ggqE5N3X1-__text": "<p><span style=\"color:#232323;\"><strong>Rosalin C.</strong></span><span style=\"color:#B5B5B5;\"> / Manager</span></p>"
+      },
+      "type": "gp-section-589759278600946629"
+    },
+    "gp_section_589759500429296628": {
+      "settings": {
+        "checksum": "1afb082c45786882cc5482f2d07eb3833ea8c94ef22125272f51ecdc6d8ffee7_1_1_1_0__1",
+        "ggA177vniop_text": "<p>Day 1</p>",
+        "ggXjkm_WXY2_text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>",
+        "ggYZEZ9SUJI_text": "Customer Testimonials",
+        "gg_fuYykvtA_text": "<p>Day 1</p>",
+        "ggbM7hE2J6F_text": "<p>Ryan, 36</p>",
+        "ggcBGi5mTAB_text": "<p>Day 15</p>",
+        "ggfUPT5X2y2_text": "<p>\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.”</p>",
+        "ggnAkK_0UPf_text": "<p>\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.”</p>",
+        "ggnH70HAoFV_text": "<p>James, 32</p>",
+        "ggsAVNEVKpS_text": "<p>Day 15</p>"
+      },
+      "type": "gp-section-589759500429296628"
+    }
+  },
+  "order": [
+    "gp_section_589759276403131364",
+    "gp_section_589759276805784548",
+    "gp_section_589759277376209892",
+    "gp_section_589759277258769173",
+    "gp_section_589759277980189461",
+    "gp_section_589759278600946629",
+    "gp_section_589759277879526388",
+    "gp_section_589759500429296628"
+  ]
+}
