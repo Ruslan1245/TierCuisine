@@ -433,6 +433,24 @@
         "svg_gap": 48
       }
     },
+    "tier_cuisine_product_split_rNqHrb": {
+      "type": "tier-cuisine-product-split",
+      "name": "TC product split",
+      "settings": {
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "reverse_layout": true,
+        "left_background": "#da892e",
+        "product_image": "shopify://shop_images/split_product_2.png",
+        "category": "KATZEN NASSFUTTER",
+        "product": "katzen-vital-snack-schones-fell",
+        "button_label": "In den Warenkorb",
+        "button_background": "#1a1a1a",
+        "button_text_color": "#ffffff"
+      }
+    },
     "product_list_fa6P9H": {
       "type": "product-list",
       "blocks": {
@@ -722,6 +740,7 @@
     "tier_cuisine_kitchen_video_9fgtAa",
     "tier_cuisine_product_split_EQCtA7",
     "tier_cuisine_vitality_snacks_cwGhGi",
+    "tier_cuisine_product_split_rNqHrb",
     "product_list_fa6P9H",
     "section_GAeaWB"
   ]
