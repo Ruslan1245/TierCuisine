@@ -33,10 +33,14 @@
                   class: 'tier-cuisine-ingredients__compare-img',
                   widths: '400, 600, 800, 1000, 1200',
                   sizes: '(min-width: 750px) min(42vw, 520px), 88vw',
-                  alt: section.settings.image_compare_b.alt | default: ''
+                  alt: section.settings.image_compare_b.alt
+                | default: ''
               }}
             </div>
-            <div class="tier-cuisine-ingredients__compare-layer tier-cuisine-ingredients__compare-layer--a" data-tc-compare-clip>
+            <div
+              class="tier-cuisine-ingredients__compare-layer tier-cuisine-ingredients__compare-layer--a"
+              data-tc-compare-clip
+            >
               {{
                 section.settings.image_compare_a
                 | image_url: width: 1200
@@ -45,7 +49,8 @@
                   class: 'tier-cuisine-ingredients__compare-img',
                   widths: '400, 600, 800, 1000, 1200',
                   sizes: '(min-width: 750px) min(42vw, 520px), 88vw',
-                  alt: section.settings.image_compare_a.alt | default: ''
+                  alt: section.settings.image_compare_a.alt
+                | default: ''
               }}
             </div>
             <button
@@ -75,7 +80,8 @@
                   class: 'tier-cuisine-ingredients__compare-img',
                   widths: '400, 600, 800, 1000, 1200',
                   sizes: '(min-width: 750px) min(42vw, 520px), 88vw',
-                  alt: section.settings.image_compare_a.alt | default: ''
+                  alt: section.settings.image_compare_a.alt
+                | default: ''
               }}
             </div>
           </div>
@@ -93,7 +99,8 @@
                 class: 'tier-cuisine-ingredients__float-img',
                 widths: '120, 200, 300, 400, 600',
                 sizes: '(min-width: 750px) 12vw, 28vw',
-                alt: section.settings.image_float_tl.alt | default: ''
+                alt: section.settings.image_float_tl.alt
+              | default: ''
             }}
           </div>
         {%- endif -%}
@@ -107,7 +114,8 @@
                 class: 'tier-cuisine-ingredients__float-img',
                 widths: '120, 200, 300, 400, 600',
                 sizes: '(min-width: 750px) 12vw, 28vw',
-                alt: section.settings.image_float_bl.alt | default: ''
+                alt: section.settings.image_float_bl.alt
+              | default: ''
             }}
           </div>
         {%- endif -%}
@@ -121,7 +129,8 @@
                 class: 'tier-cuisine-ingredients__float-img',
                 widths: '120, 200, 300, 400, 600',
                 sizes: '(min-width: 750px) 12vw, 28vw',
-                alt: section.settings.image_float_tr.alt | default: ''
+                alt: section.settings.image_float_tr.alt
+              | default: ''
             }}
           </div>
         {%- endif -%}
@@ -135,7 +144,8 @@
                 class: 'tier-cuisine-ingredients__float-img',
                 widths: '120, 200, 300, 400, 600',
                 sizes: '(min-width: 750px) 12vw, 28vw',
-                alt: section.settings.image_float_br.alt | default: ''
+                alt: section.settings.image_float_br.alt
+              | default: ''
             }}
           </div>
         {%- endif -%}
@@ -157,7 +167,8 @@
                       class: 'tier-cuisine-ingredients__circle-img',
                       widths: '60, 80, 120',
                       sizes: '48px',
-                      alt: block.settings.icon_image.alt | default: ''
+                      alt: block.settings.icon_image.alt
+                    | default: ''
                   }}
                 {%- endif -%}
               </div>
@@ -322,6 +333,7 @@
 
   .tier-cuisine-ingredients__stage {
     position: relative;
+    overflow: visible;
     margin-top: 2.5rem;
     min-height: min(90vw, 520px);
     display: flex;
@@ -332,7 +344,7 @@
   @media screen and (min-width: 750px) {
     .tier-cuisine-ingredients__stage {
       margin-top: 3rem;
-      min-height: 28rem;
+      min-height: 32rem;
     }
   }
 
@@ -341,6 +353,7 @@
     z-index: 2;
     width: min(88vw, 520px);
     max-width: 100%;
+    isolation: isolate;
   }
 
   .tier-cuisine-ingredients__compare {
@@ -401,44 +414,80 @@
     justify-content: center;
   }
 
-  .tier-cuisine-ingredients__floats {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
+  @media screen and (min-width: 750px) {
+    .tier-cuisine-ingredients__floats {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .tier-cuisine-ingredients__float {
+      position: absolute;
+      width: min(28vw, 200px);
+      max-width: 200px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .tier-cuisine-ingredients__float--tl {
+      top: -30%;
+      left: calc(50% - min(44vw, 260px) - 28px - min(28vw, 200px));
+      transform: rotate(-6deg);
+    }
+
+    .tier-cuisine-ingredients__float--bl {
+      bottom: 4%;
+      left: calc(50% - min(44vw, 260px) - 28px - min(28vw, 200px));
+      transform: rotate(5deg);
+    }
+
+    .tier-cuisine-ingredients__float--tr {
+      top: -30%;
+      right: calc(50% - min(44vw, 260px) - 28px - min(28vw, 200px));
+      transform: rotate(7deg);
+    }
+
+    .tier-cuisine-ingredients__float--br {
+      bottom: 4%;
+      right: calc(50% - min(44vw, 260px) - 28px - min(28vw, 200px));
+      transform: rotate(-5deg);
+    }
   }
 
-  .tier-cuisine-ingredients__float {
-    position: absolute;
-    width: min(28vw, 200px);
-    max-width: 200px;
-    border-radius: 10px;
-    overflow: hidden;
-    background: transparent;
+  @media screen and (min-width: 750px) and (max-width: 1100px) {
+    .tier-cuisine-ingredients__float {
+      width: min(24vw, 160px);
+      max-width: 160px;
+    }
+
+    .tier-cuisine-ingredients__float--tl,
+    .tier-cuisine-ingredients__float--bl {
+      left: calc(50% - min(44vw, 260px) - 20px - min(24vw, 160px));
+    }
+
+    .tier-cuisine-ingredients__float--tr,
+    .tier-cuisine-ingredients__float--br {
+      right: calc(50% - min(44vw, 260px) - 20px - min(24vw, 160px));
+    }
   }
 
-  .tier-cuisine-ingredients__float--tl {
-    top: 2%;
-    left: max(0px, calc(50% - 26rem));
-    transform: rotate(-6deg);
-  }
+  @media screen and (min-width: 990px) {
+    .tier-cuisine-ingredients__float {
+      width: min(28vw, 200px);
+      max-width: 200px;
+    }
 
-  .tier-cuisine-ingredients__float--bl {
-    bottom: 6%;
-    left: max(0px, calc(50% - 25rem));
-    transform: rotate(5deg);
-  }
+    .tier-cuisine-ingredients__float--tl,
+    .tier-cuisine-ingredients__float--bl {
+      left: calc(30% - min(44vw, 260px) - 36px - min(28vw, 200px));
+    }
 
-  .tier-cuisine-ingredients__float--tr {
-    top: 4%;
-    right: max(0px, calc(50% - 26rem));
-    transform: rotate(7deg);
-  }
-
-  .tier-cuisine-ingredients__float--br {
-    bottom: 4%;
-    right: max(0px, calc(50% - 25rem));
-    transform: rotate(-5deg);
+    .tier-cuisine-ingredients__float--tr,
+    .tier-cuisine-ingredients__float--br {
+      right: calc(30% - min(44vw, 260px) - 36px - min(28vw, 200px));
+    }
   }
 
   .tier-cuisine-ingredients__float-img {
