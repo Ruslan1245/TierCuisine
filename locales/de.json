@@ -263,41 +263,6 @@
   "fields": {
     "separator": "bis"
   },
-  "gift_cards": {
-    "issued": {
-      "how_to_use_gift_card": "Verwende diesen Geschenkgutscheincode online oder verwende den QR-Code im Shop",
-      "title": "Hier ist dein {{ value }}-Gutschein für {{ shop }}!",
-      "subtext": "Dein Gutschein",
-      "shop_link": "Onlineshop besuchen",
-      "add_to_apple_wallet": "Zu Apple Wallet hinzufügen",
-      "qr_image_alt": "QR-Code – Scannen, um Gutschein einzulösen",
-      "copy_code": "Geschenkgutscheincode kopieren",
-      "expiration_date": "Gültig bis {{ expires_on }}",
-      "copy_code_success": "Code erfolgreich kopiert",
-      "expired": "Abgelaufen"
-    }
-  },
-  "placeholders": {
-    "password": "Passwort",
-    "search": "Suchen",
-    "product_title": "Produkttitel",
-    "collection_title": "Kollektionstitel",
-    "blog_posts": "Blog-Beiträge",
-    "blog_post_title": "Titel",
-    "blog_post_author": "Autor",
-    "blog_post_date": "Datum",
-    "blog_post_description": "Ein Auszug aus dem Inhalt deines Blog-Beitrags"
-  },
-  "products": {
-    "product": {
-      "add_to_cart": "In den Warenkorb legen",
-      "added_to_cart": "Zum Warenkorb hinzugefügt",
-      "adding_to_cart": "Wird hinzugefügt...",
-      "add_to_cart_error": "Fehler beim Hinzufügen zum Warenkorb",
-      "sold_out": "Ausverkauft",
-      "unavailable": "Nicht verfügbar"
-    }
-  },
   "gempages": {
     "Carousel": {
       "no_slider": "No Slider"
@@ -342,6 +307,41 @@
     },
     "Breadcrumb": {
       "home": "Home"
+    }
+  },
+  "gift_cards": {
+    "issued": {
+      "how_to_use_gift_card": "Verwende diesen Geschenkgutscheincode online oder verwende den QR-Code im Shop",
+      "title": "Hier ist dein {{ value }}-Gutschein für {{ shop }}!",
+      "subtext": "Dein Gutschein",
+      "shop_link": "Onlineshop besuchen",
+      "add_to_apple_wallet": "Zu Apple Wallet hinzufügen",
+      "qr_image_alt": "QR-Code – Scannen, um Gutschein einzulösen",
+      "copy_code": "Geschenkgutscheincode kopieren",
+      "expiration_date": "Gültig bis {{ expires_on }}",
+      "copy_code_success": "Code erfolgreich kopiert",
+      "expired": "Abgelaufen"
+    }
+  },
+  "placeholders": {
+    "password": "Passwort",
+    "search": "Suchen",
+    "product_title": "Produkttitel",
+    "collection_title": "Kollektionstitel",
+    "blog_posts": "Blog-Beiträge",
+    "blog_post_title": "Titel",
+    "blog_post_author": "Autor",
+    "blog_post_date": "Datum",
+    "blog_post_description": "Ein Auszug aus dem Inhalt deines Blog-Beitrags"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "In den Warenkorb legen",
+      "added_to_cart": "Zum Warenkorb hinzugefügt",
+      "adding_to_cart": "Wird hinzugefügt...",
+      "add_to_cart_error": "Fehler beim Hinzufügen zum Warenkorb",
+      "sold_out": "Ausverkauft",
+      "unavailable": "Nicht verfügbar"
     }
   }
 }
