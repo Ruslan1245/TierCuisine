@@ -428,6 +428,8 @@
         "badge": "Gesunde Vitality Snacks mit Wirkung",
         "title": "Mit Gesundheit belohnen",
         "subtitle": "<p>Warum nur verwöhnen, wenn du auch Gutes tun kannst? <br/>Unsere Vitality Snacks sind mehr als kleine Leckerbissen: Sie<br/>schenken <strong>Freude, stärken Zähne, Fell und Immunsystem</strong> – <br/>und machen jede Belohnung zum <strong>Plus für die Gesundheit.</strong></p>",
+        "svg_code_left": "<svg width=\"455\" height=\"95\" viewbox=\"0 0 455 95\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <circle cx=\"407.55\" cy=\"47.4503\" r=\"47.4501\" transform=\"rotate(-180 407.55 47.4503)\" fill=\"#E5CCBF\"></circle>\n  <circle cx=\"229.451\" cy=\"47.4503\" r=\"47.4501\" transform=\"rotate(-180 229.451 47.4503)\" fill=\"#C7CC93\"></circle>\n  <circle cx=\"47.4501\" cy=\"47.4503\" r=\"47.4501\" transform=\"rotate(-180 47.4501 47.4503)\" fill=\"#A1B8DA\"></circle>\n</svg>",
+        "svg_code_right": "<svg width=\"455\" height=\"95\" viewbox=\"0 0 455 95\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <circle cx=\"407.55\" cy=\"47.4503\" r=\"47.4501\" transform=\"rotate(-180 407.55 47.4503)\" fill=\"#581C31\"></circle>\n  <circle cx=\"229.451\" cy=\"47.4503\" r=\"47.4501\" transform=\"rotate(-180 229.451 47.4503)\" fill=\"#DA892E\"></circle>\n  <circle cx=\"47.4501\" cy=\"47.4503\" r=\"47.4501\" transform=\"rotate(-180 47.4501 47.4503)\" fill=\"#37475B\"></circle>\n</svg>",
         "svg_gap": 48
       }
     },
