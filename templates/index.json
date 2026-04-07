@@ -113,10 +113,21 @@
             "button_link": "",
             "button_background": "#d2bd92"
           }
+        },
+        "left_product_KUwzJR": {
+          "type": "left_product",
+          "settings": {
+            "image": "shopify://shop_images/dual_grid_2.png",
+            "title": "Nassfutter",
+            "button_label": "KATZE",
+            "button_link": "",
+            "button_background": "#d2bd92"
+          }
         }
       },
       "block_order": [
-        "left_product_WH33HF"
+        "left_product_WH33HF",
+        "left_product_KUwzJR"
       ],
       "name": "Tier Cuisine dual grid",
       "settings": {
