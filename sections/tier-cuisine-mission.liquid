@@ -50,7 +50,8 @@
                         class: 'tier-cuisine-mission__circle-icon-img',
                         widths: '60, 80, 120',
                         sizes: '60px',
-                        alt: block.settings.icon_image.alt | default: ''
+                        alt: block.settings.icon_image.alt
+                      | default: ''
                     }}
                   </span>
                 {%- endif -%}
@@ -89,7 +90,8 @@
             class: 'tier-cuisine-mission__decor-img',
             widths: '200, 360, 480, 600, 900',
             sizes: '(min-width: 750px) 22vw, 42vw',
-            alt: section.settings.image_left.alt | default: ''
+            alt: section.settings.image_left.alt
+          | default: ''
         }}
       </div>
     {%- endif -%}
@@ -103,7 +105,8 @@
             class: 'tier-cuisine-mission__decor-img',
             widths: '200, 360, 480, 600, 900',
             sizes: '(min-width: 750px) 22vw, 42vw',
-            alt: section.settings.image_right.alt | default: ''
+            alt: section.settings.image_right.alt
+          | default: ''
         }}
       </div>
     {%- endif -%}
@@ -132,6 +135,7 @@
     max-width: 52rem;
     margin-inline: auto;
     text-align: center;
+    padding: 0 20px;
   }
 
   .tier-cuisine-mission__badge {
@@ -191,7 +195,7 @@
   }
 
   .tier-cuisine-mission__feature {
-    flex: 1 1 12rem;
+    flex: 0 1 11rem;
     max-width: 16rem;
     display: flex;
     flex-direction: column;
@@ -199,10 +203,10 @@
   }
 
   .tier-cuisine-mission__circle {
-    width: 7.5rem;
-    height: 7.5rem;
+    width: 81px;
+    height: 81px;
     border-radius: 50%;
-    background: var(--tc-mission-circle-bg, #e8dfd4);
+    background: #d2bd92;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -295,14 +299,14 @@
 
   .tier-cuisine-mission__decor--left {
     top: 8%;
-    left: max(0px, calc(50% - 50rem));
-    transform: rotate(-8deg);
+    left: max(0px, calc(58% - 50rem));
+    transform: rotate(-16deg);
   }
 
   .tier-cuisine-mission__decor--right {
-    bottom: 10%;
-    right: max(0px, calc(50% - 50rem));
-    transform: rotate(8deg);
+    bottom: 24%;
+    right: max(0px, calc(56% - 50rem));
+    transform: rotate(22deg);
   }
 
   .tier-cuisine-mission__decor-img {
@@ -325,7 +329,7 @@
       flex-wrap: wrap;
       justify-content: center;
       align-items: flex-start;
-      gap: 12px;
+      gap: 20px;
       margin-top: 2rem;
       padding-inline: 0.5rem;
       pointer-events: auto;
