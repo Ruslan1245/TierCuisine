@@ -103,6 +103,21 @@
     },
     "tier_cuisine_dual_products_K6bCRr": {
       "type": "tier-cuisine-dual-products",
+      "blocks": {
+        "left_product_WH33HF": {
+          "type": "left_product",
+          "settings": {
+            "image": "shopify://shop_images/dual_grid_1.png",
+            "title": "Vital Snacks",
+            "button_label": "KATZE",
+            "button_link": "",
+            "button_background": "#d2bd92"
+          }
+        }
+      },
+      "block_order": [
+        "left_product_WH33HF"
+      ],
       "name": "Tier Cuisine dual grid",
       "settings": {
         "padding_top_desktop": 80,
@@ -110,7 +125,7 @@
         "padding_top_mobile": 40,
         "padding_bottom_mobile": 40,
         "heading": "<p>Tierarzt-Knowhow trifft <em>Kochkunst</em>:</p>",
-        "subheading": "<p>Premiumfutter für gesunde und glückliche Hunde &amp; Katzen.</p>",
+        "subheading": "<p>Premiumfutter für gesunde und glückliche Hunde & Katzen.</p>",
         "left_circle_bg": "#e3e5ce",
         "right_circle_bg": "#e5e4e0",
         "left_footer_text": "Zu allen Produkten für Katzen",
