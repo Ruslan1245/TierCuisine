@@ -1,0 +1,287 @@
+{%- liquid
+  assign vs_svg_left_alt = ''
+  assign vs_svg_right_alt = ''
+  if section.settings.svg_left != blank
+    assign vs_svg_left_alt = section.settings.svg_left.alt | default: ''
+  endif
+  if section.settings.svg_right != blank
+    assign vs_svg_right_alt = section.settings.svg_right.alt | default: ''
+  endif
+-%}
+
+<div
+  class="section section--full-width tier-cuisine-vitality-snacks"
+  id="TierCuisineVitalitySnacks-{{ section.id }}"
+  style="
+    --tc-vs-pad-top-d: {{ section.settings.padding_top_desktop }}px;
+    --tc-vs-pad-bot-d: {{ section.settings.padding_bottom_desktop }}px;
+    --tc-vs-pad-top-m: {{ section.settings.padding_top_mobile }}px;
+    --tc-vs-pad-bot-m: {{ section.settings.padding_bottom_mobile }}px;
+    --tc-vs-svg-gap: {{ section.settings.svg_gap }}px;
+  "
+>
+  <div class="tier-cuisine-vitality-snacks__inner">
+    {%- if section.settings.badge != blank -%}
+      <p class="tier-cuisine-vitality-snacks__badge">{{ section.settings.badge | escape }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.title != blank -%}
+      <h2 class="tier-cuisine-vitality-snacks__title">{{ section.settings.title | escape }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.subtitle != blank -%}
+      <div class="tier-cuisine-vitality-snacks__subtitle rte">
+        {{ section.settings.subtitle }}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.svg_left != blank or section.settings.svg_right != blank -%}
+      <div class="tier-cuisine-vitality-snacks__svg-row">
+        {%- if section.settings.svg_left != blank -%}
+          <div class="tier-cuisine-vitality-snacks__svg-cell">
+            {{
+              section.settings.svg_left
+              | image_url: width: 1600
+              | image_tag:
+                loading: 'lazy',
+                class: 'tier-cuisine-vitality-snacks__svg-img',
+                widths: '300, 400, 600, 800, 1200, 1600',
+                sizes: '(min-width: 750px) min(45vw, 720px), 88vw',
+                alt: vs_svg_left_alt
+            }}
+          </div>
+        {%- endif -%}
+        {%- if section.settings.svg_right != blank -%}
+          <div class="tier-cuisine-vitality-snacks__svg-cell">
+            {{
+              section.settings.svg_right
+              | image_url: width: 1600
+              | image_tag:
+                loading: 'lazy',
+                class: 'tier-cuisine-vitality-snacks__svg-img',
+                widths: '300, 400, 600, 800, 1200, 1600',
+                sizes: '(min-width: 750px) min(45vw, 720px), 88vw',
+                alt: vs_svg_right_alt
+            }}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .tier-cuisine-vitality-snacks {
+    padding-block-start: var(--tc-vs-pad-top-m);
+    padding-block-end: var(--tc-vs-pad-bot-m);
+  }
+
+  @media screen and (min-width: 750px) {
+    .tier-cuisine-vitality-snacks {
+      padding-block-start: var(--tc-vs-pad-top-d);
+      padding-block-end: var(--tc-vs-pad-bot-d);
+    }
+  }
+
+  .tier-cuisine-vitality-snacks__inner {
+    max-width: 52rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+    text-align: center;
+  }
+
+  @media screen and (min-width: 750px) {
+    .tier-cuisine-vitality-snacks__inner {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .tier-cuisine-vitality-snacks__badge {
+    margin: 0 0 38px;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    color: #000;
+  }
+
+  .tier-cuisine-vitality-snacks__title {
+    margin: 0 0 80px;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: clamp(1.75rem, 5vw, 48px);
+    text-align: center;
+    color: var(--tc-almost-black-500);
+    line-height: 1.2;
+  }
+
+  .tier-cuisine-vitality-snacks__subtitle.rte {
+    margin: 0;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    text-align: center;
+    color: var(--tc-almost-black-500);
+  }
+
+  @media screen and (max-width: 749px) {
+    .tier-cuisine-vitality-snacks__subtitle.rte {
+      font-size: 16px;
+    }
+
+    .tier-cuisine-vitality-snacks__badge {
+      margin-bottom: 1.5rem;
+    }
+
+    .tier-cuisine-vitality-snacks__title {
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  .tier-cuisine-vitality-snacks__subtitle.rte p {
+    margin: 0;
+  }
+
+  .tier-cuisine-vitality-snacks__subtitle.rte strong {
+    font-weight: 700;
+  }
+
+  .tier-cuisine-vitality-snacks__svg-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--tc-vs-svg-gap);
+    margin-top: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .tier-cuisine-vitality-snacks__svg-cell {
+    flex: 1 1 auto;
+    min-width: min(100%, 12rem);
+    max-width: min(100%, 28rem);
+    display: flex;
+    justify-content: center;
+  }
+
+  .tier-cuisine-vitality-snacks__svg-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "TC vitality text + SVG",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Padding — desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Padding — mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge",
+      "default": "Gesunde Vitality Snacks mit Wirkung"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Mit Gesundheit belohnen"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "<p>Dein Text mit <strong>fett hervorgehobenen</strong> Stellen.</p>"
+    },
+    {
+      "type": "header",
+      "content": "SVG illustrations"
+    },
+    {
+      "type": "paragraph",
+      "content": "Upload SVG files (or PNG). Spacing is controlled below."
+    },
+    {
+      "type": "image_picker",
+      "id": "svg_left",
+      "label": "SVG / image (left)"
+    },
+    {
+      "type": "image_picker",
+      "id": "svg_right",
+      "label": "SVG / image (right)"
+    },
+    {
+      "type": "range",
+      "id": "svg_gap",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Gap between images",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "TC vitality text + SVG",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
