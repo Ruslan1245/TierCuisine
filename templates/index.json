@@ -331,6 +331,51 @@
         "button_link": ""
       }
     },
+    "tier_cuisine_ingredients_compare_Y7gaMp": {
+      "type": "tier-cuisine-ingredients-compare",
+      "blocks": {
+        "feature_PqynLt": {
+          "type": "feature",
+          "settings": {
+            "text": "<p>getreidefrei</p>"
+          }
+        },
+        "feature_ft7gBX": {
+          "type": "feature",
+          "settings": {
+            "text": "<p>getreidefrei</p>"
+          }
+        },
+        "feature_JwmXGL": {
+          "type": "feature",
+          "settings": {
+            "text": "<p>getreidefrei</p>"
+          }
+        },
+        "feature_gjahmT": {
+          "type": "feature",
+          "settings": {
+            "text": "<p>getreidefrei</p>"
+          }
+        }
+      },
+      "block_order": [
+        "feature_PqynLt",
+        "feature_ft7gBX",
+        "feature_JwmXGL",
+        "feature_gjahmT"
+      ],
+      "name": "TC ingredients compare",
+      "settings": {
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "heading": "<p>Unser Erfolg: Ganz einfach!</p><p>Nur pure, <em>ehrliche Zutaten</em></p><p><em>in Lebensmittelqualität</em></p>",
+        "button_label": "Mehr über unsere Zutaten erfahren",
+        "button_link": ""
+      }
+    },
     "product_list_fa6P9H": {
       "type": "product-list",
       "blocks": {
@@ -616,6 +661,7 @@
     "tier_cuisine_sale_promo_z6Rqx4",
     "tier_cuisine_products_carousel_pwTLDj",
     "tier_cuisine_mission_tgdAtx",
+    "tier_cuisine_ingredients_compare_Y7gaMp",
     "product_list_fa6P9H",
     "section_GAeaWB"
   ]
