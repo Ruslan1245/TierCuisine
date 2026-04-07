@@ -12,7 +12,7 @@
     "logo": "shopify://shop_images/tiercuisine-logo_6.png",
     "logo_height": 36,
     "logo_height_mobile": 28,
-    "type_body_font": "inter_n4",
+    "type_body_font": "dm_sans_n4",
     "type_subheading_font": "inter_n5",
     "type_heading_font": "inter_n7",
     "type_accent_font": "inter_n7",
@@ -137,7 +137,7 @@
       },
       "scheme-2": {
         "settings": {
-          "background": "#c7cc9360",
+          "background": "#c7cc9361",
           "foreground_heading": "#000000",
           "foreground": "#000000cf",
           "primary": "#000000cf",
