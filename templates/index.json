@@ -417,6 +417,20 @@
         "right_image": "shopify://shop_images/Tiercuisine_sensible_katzen.jpg"
       }
     },
+    "tier_cuisine_vitality_snacks_cwGhGi": {
+      "type": "tier-cuisine-vitality-snacks",
+      "name": "TC vitality text + SVG",
+      "settings": {
+        "padding_top_desktop": 60,
+        "padding_bottom_desktop": 60,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "badge": "Gesunde Vitality Snacks mit Wirkung",
+        "title": "Mit Gesundheit belohnen",
+        "subtitle": "<p>Dein Text mit <strong>fett hervorgehobenen</strong> Stellen.</p>",
+        "svg_gap": 48
+      }
+    },
     "product_list_fa6P9H": {
       "type": "product-list",
       "blocks": {
@@ -705,6 +719,7 @@
     "tier_cuisine_ingredients_compare_Y7gaMp",
     "tier_cuisine_kitchen_video_9fgtAa",
     "tier_cuisine_product_split_EQCtA7",
+    "tier_cuisine_vitality_snacks_cwGhGi",
     "product_list_fa6P9H",
     "section_GAeaWB"
   ]
