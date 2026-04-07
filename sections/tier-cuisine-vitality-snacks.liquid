@@ -128,11 +128,17 @@
 
   .tier-cuisine-vitality-snacks__svg-row {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: var(--tc-vs-svg-gap);
+    gap: 170px;
     margin-top: clamp(2rem, 5vw, 3.5rem);
+    @media (max-width: 750px) {
+      gap: 70px;
+      flex-wrap: wrap;
+      @media (max-width: 550px) {
+        gap: 40px;
+      }
+    }
   }
 
   .tier-cuisine-vitality-snacks__svg-cell {
@@ -155,6 +161,9 @@
     height: auto;
     max-width: 100%;
     display: block;
+    @media (max-width: 750px) {
+      width: 75%;
+    }
   }
 {% endstylesheet %}
 
