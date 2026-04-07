@@ -219,17 +219,30 @@
           "type": "slide",
           "settings": {
             "product": "",
-            "card_bg": "#e2e7b6",
+            "card_bg": "#c7cc9366",
             "image": "shopify://shop_images/promo_product.png",
             "category": "VITALITY KATZEN SNACK",
             "product_title": "IMMUN BOOST",
             "fallback_price": "12,99 EUR",
             "fallback_link": ""
           }
+        },
+        "slide_wDfrRn": {
+          "type": "slide",
+          "settings": {
+            "product": "",
+            "card_bg": "#f2eee7",
+            "image": "shopify://shop_images/slider_produtc_2.png",
+            "category": "VITALITY KATZEN SNACK",
+            "product_title": "SCHÖNES FELL",
+            "fallback_price": "12,99 EUR",
+            "fallback_link": ""
+          }
         }
       },
       "block_order": [
-        "slide_EC4xYG"
+        "slide_EC4xYG",
+        "slide_wDfrRn"
       ],
       "name": "TC products slider",
       "settings": {
