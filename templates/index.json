@@ -214,6 +214,23 @@
     },
     "tier_cuisine_products_carousel_pwTLDj": {
       "type": "tier-cuisine-products-carousel",
+      "blocks": {
+        "slide_EC4xYG": {
+          "type": "slide",
+          "settings": {
+            "product": "",
+            "card_bg": "#e2e7b6",
+            "image": "shopify://shop_images/promo_product.png",
+            "category": "VITALITY KATZEN SNACK",
+            "product_title": "IMMUN BOOST",
+            "fallback_price": "12,99 EUR",
+            "fallback_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_EC4xYG"
+      ],
       "name": "TC products slider",
       "settings": {
         "padding_top_desktop": 60,
