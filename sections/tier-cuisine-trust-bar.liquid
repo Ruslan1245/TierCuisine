@@ -1,33 +1,42 @@
-<div class="section section--full-width tier-cuisine-trust-bar" style="--tctb-bg: {{ section.settings.background_color }};">
-  <div class="tier-cuisine-trust-bar__viewport">
-    <div class="tier-cuisine-trust-bar__track">
-      {%- for block in section.blocks -%}
-        {%- case block.type -%}
-          {%- when 'item' -%}
-            <div class="tier-cuisine-trust-bar__item" {{ block.shopify_attributes }}>
-              {%- if block.settings.badge_svg != blank -%}
-                <div class="tier-cuisine-trust-bar__badge">
-                  {{ block.settings.badge_svg | strip | raw }}
+<div
+  class="section section--full-width tier-cuisine-trust-bar"
+  data-tctb
+  data-design-mode="{% if request.design_mode %}true{% else %}false{% endif %}"
+  style="--tctb-bg: {{ section.settings.background_color }};"
+>
+  <div class="tier-cuisine-trust-bar__viewport" data-tctb-viewport>
+    <div class="tier-cuisine-trust-bar__marquee-inner" data-tctb-inner>
+      <div class="tier-cuisine-trust-bar__track" data-tctb-track>
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'item' -%}
+              <div class="tier-cuisine-trust-bar__item" {{ block.shopify_attributes }}>
+                {%- if block.settings.badge_svg != blank -%}
+                  <div class="tier-cuisine-trust-bar__badge">
+                    {{ block.settings.badge_svg | strip | raw }}
+                  </div>
+                {%- endif -%}
+
+                <div class="tier-cuisine-trust-bar__row">
+                  {%- if block.settings.icon_svg != blank -%}
+                    <span class="tier-cuisine-trust-bar__icon" aria-hidden="true">
+                      {{ block.settings.icon_svg | strip | raw }}
+                    </span>
+                  {%- endif -%}
+
+                  {%- if block.settings.label != blank -%}
+                    <span class="tier-cuisine-trust-bar__label">{{ block.settings.label | escape }}</span>
+                  {%- endif -%}
                 </div>
-              {%- endif -%}
-
-              <div class="tier-cuisine-trust-bar__row">
-                {%- if block.settings.icon_svg != blank -%}
-                  <span class="tier-cuisine-trust-bar__icon" aria-hidden="true">
-                    {{ block.settings.icon_svg | strip | raw }}
-                  </span>
-                {%- endif -%}
-
-                {%- if block.settings.label != blank -%}
-                  <span class="tier-cuisine-trust-bar__label">{{ block.settings.label | escape }}</span>
-                {%- endif -%}
               </div>
-            </div>
-        {%- endcase -%}
-      {%- endfor -%}
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
     </div>
   </div>
 </div>
+
+<script src="{{ 'tier-cuisine-trust-bar.js' | asset_url }}" defer></script>
 
 {% stylesheet %}
   .tier-cuisine-trust-bar {
@@ -43,18 +52,55 @@
     scrollbar-width: thin;
   }
 
+  .tier-cuisine-trust-bar__viewport.is-marquee {
+    overflow: hidden;
+  }
+
+  .tier-cuisine-trust-bar__marquee-inner {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 61px;
+    width: max-content;
+    min-height: 64px;
+    padding-inline: max(1rem, env(safe-area-inset-left)) max(1rem, env(safe-area-inset-right));
+    box-sizing: border-box;
+  }
+
+  .tier-cuisine-trust-bar__viewport.is-marquee .tier-cuisine-trust-bar__marquee-inner {
+    animation: tier-cuisine-trust-bar-scroll var(--tctb-duration, 40s) linear infinite;
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tier-cuisine-trust-bar__viewport.is-marquee .tier-cuisine-trust-bar__marquee-inner {
+      animation: none;
+    }
+  }
+
+  @keyframes tier-cuisine-trust-bar-scroll {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+
+    to {
+      transform: translate3d(calc(-1 * var(--tctb-distance)), 0, 0);
+    }
+  }
+
   .tier-cuisine-trust-bar__track {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: flex-start;
-    gap: 61px;
+    gap: 40px;
     min-height: 64px;
     height: 64px;
     width: max-content;
-    min-width: 100%;
-    padding-inline: max(1rem, env(safe-area-inset-left)) max(1rem, env(safe-area-inset-right));
+    flex: 0 0 auto;
     box-sizing: border-box;
   }
 
@@ -69,7 +115,7 @@
   .tier-cuisine-trust-bar__badge {
     position: absolute;
     top: 0;
-    right: 0;
+    right: -15px;
     z-index: 1;
     line-height: 0;
     transform: translate(20%, -20%);
