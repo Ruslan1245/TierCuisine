@@ -448,7 +448,8 @@
         "product": "katzen-vital-snack-schones-fell",
         "button_label": "In den Warenkorb",
         "button_background": "#1a1a1a",
-        "button_text_color": "#ffffff"
+        "button_text_color": "#ffffff",
+        "right_image": "shopify://shop_images/eventlocation_89.jpg"
       }
     },
     "product_list_fa6P9H": {
