@@ -41,7 +41,8 @@
                         loading: 'lazy',
                         widths: '220, 340, 480, 680, 900',
                         sizes: '(min-width: 1200px) 22vw, (min-width: 750px) 30vw, 80vw',
-                        alt: block.settings.image.alt | default: block.settings.product_title
+                        alt: block.settings.image.alt
+                      | default: block.settings.product_title
                     }}
                   {%- elsif product_ref != blank and product_ref.featured_image != blank -%}
                     {{
@@ -52,7 +53,8 @@
                         loading: 'lazy',
                         widths: '220, 340, 480, 680, 900',
                         sizes: '(min-width: 1200px) 22vw, (min-width: 750px) 30vw, 80vw',
-                        alt: product_ref.featured_image.alt | default: product_ref.title
+                        alt: product_ref.featured_image.alt
+                      | default: product_ref.title
                     }}
                   {%- endif -%}
                 </a>
@@ -70,7 +72,9 @@
                 {%- endif -%}
 
                 {%- if product_ref != blank -%}
-                  <p class="tier-cuisine-products-carousel__price">{{ product_ref.selected_or_first_available_variant.price | money }}</p>
+                  <p class="tier-cuisine-products-carousel__price">
+                    {{ product_ref.selected_or_first_available_variant.price | money }}
+                  </p>
                 {%- else -%}
                   <p class="tier-cuisine-products-carousel__price">{{ block.settings.fallback_price | escape }}</p>
                 {%- endif -%}
@@ -96,6 +100,29 @@
 <script>
   (() => {
     const sectionId = 'TierCuisineProductsCarousel-{{ section.id }}';
+    const resizeHandlers = new Map();
+
+    const syncCardHeights = (root, swiper) => {
+      const cards = Array.from(root.querySelectorAll('.tier-cuisine-products-carousel__card'));
+      if (!cards.length) return;
+
+      cards.forEach((card) => {
+        card.style.minHeight = '0px';
+      });
+
+      let maxHeight = 0;
+      cards.forEach((card) => {
+        maxHeight = Math.max(maxHeight, card.offsetHeight);
+      });
+
+      cards.forEach((card) => {
+        card.style.minHeight = `${maxHeight}px`;
+      });
+
+      if (swiper && typeof swiper.updateAutoHeight === 'function') {
+        swiper.updateAutoHeight(0);
+      }
+    };
 
     const init = () => {
       const root = document.getElementById(sectionId);
@@ -109,29 +136,53 @@
       root.dataset.tcSwiperReady = 'true';
 
       const swiper = new window.Swiper(container, {
+        autoHeight: true,
         slidesPerView: 1.15,
         spaceBetween: 12,
         watchOverflow: true,
         speed: 700,
         scrollbar: {
           el: scrollbar,
-          draggable: true
+          draggable: true,
         },
         breakpoints: {
           640: {
             slidesPerView: 2,
-            spaceBetween: 16
+            spaceBetween: 16,
           },
           990: {
             slidesPerView: 3,
-            spaceBetween: 20
+            spaceBetween: 34,
           },
           1300: {
             slidesPerView: 4,
-            spaceBetween: 20
-          }
-        }
+            spaceBetween: 34,
+          },
+        },
       });
+
+      const onResize = () => syncCardHeights(root, swiper);
+      window.addEventListener('resize', onResize);
+      resizeHandlers.set(sectionId, onResize);
+
+      swiper.on('init', () => syncCardHeights(root, swiper));
+      swiper.on('resize', () => syncCardHeights(root, swiper));
+      swiper.on('breakpoint', () => syncCardHeights(root, swiper));
+      swiper.on('slideChangeTransitionEnd', () => syncCardHeights(root, swiper));
+
+      const images = root.querySelectorAll('.tier-cuisine-products-carousel__img');
+      images.forEach((img) => {
+        if (img.complete) return;
+        img.addEventListener(
+          'load',
+          () => {
+            syncCardHeights(root, swiper);
+          },
+          { once: true }
+        );
+      });
+
+      requestAnimationFrame(() => syncCardHeights(root, swiper));
 
       root._tcProductsSwiper = swiper;
     };
@@ -167,6 +218,13 @@
     document.addEventListener('shopify:section:unload', (event) => {
       const root = event.target.querySelector('#' + sectionId);
       const swiper = root?._tcProductsSwiper;
+
+      const onResize = resizeHandlers.get(sectionId);
+      if (onResize) {
+        window.removeEventListener('resize', onResize);
+        resizeHandlers.delete(sectionId);
+      }
+
       if (swiper) {
         swiper.destroy(true, true);
         root.dataset.tcSwiperReady = 'false';
@@ -225,15 +283,26 @@
 
   .tier-cuisine-products-carousel__slider-wrap {
     margin-top: 50px;
+    padding: 0 20px;
   }
 
   .tier-cuisine-products-carousel__card {
     background: var(--tc-card-bg, #f2eee7);
     padding: 1.25rem 1rem 1rem;
     min-height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .tier-cuisine-products-carousel__swiper .swiper-wrapper {
+    align-items: stretch;
+  }
+
+  .tier-cuisine-products-carousel__swiper .swiper-slide {
+    height: auto;
+    display: flex;
   }
 
   .tier-cuisine-products-carousel__image-link {
@@ -242,15 +311,16 @@
     justify-content: center;
     width: 100%;
     margin-bottom: 7px;
-    min-height: 15rem;
+    height: 20rem;
     text-decoration: none;
   }
 
   .tier-cuisine-products-carousel__img {
     width: 100%;
     max-width: 240px;
-    height: auto;
+    height: 100%;
     object-fit: contain;
+    object-position: center;
     display: block;
   }
 
