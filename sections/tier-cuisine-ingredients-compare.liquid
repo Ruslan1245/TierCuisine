@@ -1,5 +1,5 @@
 <div
-  class="section section--full-width tier-cuisine-ingredients"
+  class="section section--page-width tier-cuisine-ingredients"
   id="TierCuisineIngredients-{{ section.id }}"
   style="
     --tc-ing-pad-top-d: {{ section.settings.padding_top_desktop }}px;
@@ -151,49 +151,48 @@
         {%- endif -%}
       </div>
     </div>
-
-    {%- if section.blocks.size > 0 -%}
-      <div class="tier-cuisine-ingredients__features">
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'feature' -%}
-            <div class="tier-cuisine-ingredients__feature" {{ block.shopify_attributes }}>
-              <div class="tier-cuisine-ingredients__circle">
-                {%- if block.settings.icon_image != blank -%}
-                  {{
-                    block.settings.icon_image
-                    | image_url: width: 120
-                    | image_tag:
-                      loading: 'lazy',
-                      class: 'tier-cuisine-ingredients__circle-img',
-                      widths: '60, 80, 120',
-                      sizes: '48px',
-                      alt: block.settings.icon_image.alt
-                    | default: ''
-                  }}
-                {%- endif -%}
-              </div>
-              {%- if block.settings.text != blank -%}
-                <div class="tier-cuisine-ingredients__feature-text rte">
-                  {{ block.settings.text }}
-                </div>
+  </div>
+  {%- if section.blocks.size > 0 -%}
+    <div class="tier-cuisine-ingredients__features">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'feature' -%}
+          <div class="tier-cuisine-ingredients__feature" {{ block.shopify_attributes }}>
+            <div class="tier-cuisine-ingredients__circle">
+              {%- if block.settings.icon_image != blank -%}
+                {{
+                  block.settings.icon_image
+                  | image_url: width: 120
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'tier-cuisine-ingredients__circle-img',
+                    widths: '60, 80, 120',
+                    sizes: '48px',
+                    alt: block.settings.icon_image.alt
+                  | default: ''
+                }}
               {%- endif -%}
             </div>
-          {%- endif -%}
-        {%- endfor -%}
-      </div>
-    {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <div class="tier-cuisine-ingredients__feature-text rte">
+                {{ block.settings.text }}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
 
-    {%- if section.settings.button_label != blank -%}
-      <div class="tier-cuisine-ingredients__cta">
-        <a
-          class="tier-cuisine-ingredients__btn"
-          href="{% if section.settings.button_link != blank %}{{ section.settings.button_link }}{% else %}#{% endif %}"
-        >
-          {{ section.settings.button_label | escape }}
-        </a>
-      </div>
-    {%- endif -%}
-  </div>
+  {%- if section.settings.button_label != blank -%}
+    <div class="tier-cuisine-ingredients__cta">
+      <a
+        class="tier-cuisine-ingredients__btn"
+        href="{% if section.settings.button_link != blank %}{{ section.settings.button_link }}{% else %}#{% endif %}"
+      >
+        {{ section.settings.button_label | escape }}
+      </a>
+    </div>
+  {%- endif -%}
 </div>
 
 <script>
@@ -475,8 +474,8 @@
 
   @media screen and (min-width: 990px) {
     .tier-cuisine-ingredients__float {
-      width: min(28vw, 200px);
-      max-width: 200px;
+      width: min(28vw, 235px);
+      max-width: 235px;
     }
 
     .tier-cuisine-ingredients__float--tl,
@@ -528,33 +527,50 @@
   }
 
   .tier-cuisine-ingredients__features {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem 2rem;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0;
+    row-gap: 1.5rem;
     margin-top: 2.5rem;
   }
 
   @media screen and (min-width: 750px) {
     .tier-cuisine-ingredients__features {
-      margin-top: 3rem;
-      gap: 2rem 2.5rem;
+      margin-top: 5rem;
+      row-gap: 1.75rem;
     }
   }
 
   .tier-cuisine-ingredients__feature {
-    flex: 1 1 10rem;
-    max-width: 14rem;
+    flex: 0 0 auto;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 749px) {
+    .tier-cuisine-ingredients__features {
+      row-gap: 1.25rem;
+    }
+
+    .tier-cuisine-ingredients__feature {
+      flex: 0 1 calc(50% - 0.375rem);
+      max-width: calc(50% - 0.375rem);
+    }
   }
 
   .tier-cuisine-ingredients__circle {
-    width: 4.5rem;
-    height: 4.5rem;
+    width: 81px;
+    height: 81px;
     border-radius: 50%;
-    border: 1px solid #000;
+    border: 2px solid #d2bd92;
     box-sizing: border-box;
     display: flex;
     align-items: center;
