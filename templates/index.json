@@ -398,6 +398,24 @@
         "video_cta_label": "VIDEO ANSEHEN"
       }
     },
+    "tier_cuisine_product_split_EQCtA7": {
+      "type": "tier-cuisine-product-split",
+      "name": "TC product split",
+      "settings": {
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "reverse_layout": false,
+        "left_background": "#b8cbc5",
+        "product_image": "shopify://shop_images/testnasssfutter.jpg",
+        "category": "KATZEN NASSFUTTER",
+        "product": "",
+        "button_label": "In den Warenkorb",
+        "button_background": "#1a1a1a",
+        "button_text_color": "#ffffff"
+      }
+    },
     "product_list_fa6P9H": {
       "type": "product-list",
       "blocks": {
@@ -685,6 +703,7 @@
     "tier_cuisine_mission_tgdAtx",
     "tier_cuisine_ingredients_compare_Y7gaMp",
     "tier_cuisine_kitchen_video_9fgtAa",
+    "tier_cuisine_product_split_EQCtA7",
     "product_list_fa6P9H",
     "section_GAeaWB"
   ]
