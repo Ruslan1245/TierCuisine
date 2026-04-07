@@ -1,3 +1,22 @@
+{%- liquid
+  assign kv_video = section.settings.video
+  assign kv_cover = section.settings.cover_image
+  assign kv_poster = kv_cover
+  if kv_poster == blank and kv_video != blank
+    assign kv_poster = kv_video.preview_image
+  endif
+  assign kv_poster_alt = ''
+  if kv_cover != blank
+    assign kv_poster_alt = kv_cover.alt | default: ''
+  elsif kv_video != blank
+    assign kv_poster_alt = kv_video.alt | default: ''
+  endif
+  assign kv_sources_count = 0
+  if kv_video != blank
+    assign kv_sources_count = kv_video.sources | size
+  endif
+-%}
+
 <div
   class="section section--full-width tier-cuisine-kitchen-video"
   id="TierCuisineKitchenVideo-{{ section.id }}"
@@ -25,52 +44,102 @@
     </div>
   </div>
 
-  {%- if section.settings.cover_image != blank -%}
+  {%- if kv_video != blank or kv_cover != blank -%}
     <div class="tier-cuisine-kitchen-video__media-wrap page-width">
-      <a
-        class="tier-cuisine-kitchen-video__media"
-        href="{% if section.settings.video_url != blank %}{{ section.settings.video_url }}{% else %}#{% endif %}"
-        {% if section.settings.video_url != blank %}
-          target="_blank"
-          rel="noopener noreferrer"
-        {% endif %}
-        aria-label="{{ section.settings.video_link_label | default: 'Play video' | escape }}"
-      >
+      <div class="tier-cuisine-kitchen-video__media" data-tc-kitchen-video-root>
         <span class="tier-cuisine-kitchen-video__media-aspect" aria-hidden="true"></span>
-        <div class="tier-cuisine-kitchen-video__media-inner">
+
+        {%- comment -%}
+          Спочатку «лише прев’ю» (нема вибраного відео), щоб image_picker завжди відображався.
+        {%- endcomment -%}
+        {%- if kv_cover != blank and kv_video == blank -%}
           {{
-            section.settings.cover_image
+            kv_cover
             | image_url: width: 2000
             | image_tag:
               loading: 'lazy',
-              class: 'tier-cuisine-kitchen-video__poster',
+              class: 'tier-cuisine-kitchen-video__poster tier-cuisine-kitchen-video__poster--only',
               widths: '400, 600, 800, 1000, 1200, 1600, 2000',
               sizes: '(min-width: 1200px) min(90vw, 1200px), 92vw',
-              alt: section.settings.cover_image.alt | default: ''
+              alt: kv_poster_alt
           }}
-          <span class="tier-cuisine-kitchen-video__play" aria-hidden="true">
-            <svg
-              class="tier-cuisine-kitchen-video__play-svg"
-              width="193"
-              height="193"
-              viewBox="0 0 193 193"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+        {%- elsif kv_video != blank and kv_sources_count > 0 -%}
+          <video
+            class="tier-cuisine-kitchen-video__el"
+            playsinline
+            preload="metadata"
+            {% if kv_poster != blank %}
+              poster="{{ kv_poster | image_url: width: 2000 }}"
+            {% endif %}
+            data-tc-kitchen-video
+          >
+            {%- for source in kv_video.sources -%}
+              <source src="{{ source.url }}" type="{{ source.mime_type }}">
+            {%- endfor -%}
+          </video>
+        {%- elsif kv_video != blank -%}
+          <div class="tier-cuisine-kitchen-video__embed">
+            {{ kv_video | video_tag: image_size: '2500x', autoplay: false, loop: false, muted: false, controls: true, class: 'tier-cuisine-kitchen-video__el' }}
+          </div>
+        {%- endif -%}
+
+        {%- if kv_video != blank and kv_sources_count > 0 -%}
+          <div class="tier-cuisine-kitchen-video__overlay" data-tc-kitchen-overlay>
+            <button
+              type="button"
+              class="tier-cuisine-kitchen-video__play-btn"
+              data-tc-kitchen-play
+              aria-label="{{ section.settings.video_play_label | default: 'Video abspielen' | escape }}"
             >
-              <path d="M96.4999 176.917C140.913 176.917 176.917 140.913 176.917 96.5002C176.917 52.0873 140.913 16.0835 96.4999 16.0835C52.087 16.0835 16.0832 52.0873 16.0832 96.5002C16.0832 140.913 52.087 176.917 96.4999 176.917Z" fill="#D2BD92" fill-opacity="0.28" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M80.4167 64.3335L128.667 96.5002L80.4167 128.667V64.3335Z" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </span>
-          {%- if section.settings.video_cta_label != blank -%}
-            <span class="tier-cuisine-kitchen-video__pill">
-              {{ section.settings.video_cta_label | escape }}
-            </span>
-          {%- endif -%}
-        </div>
-      </a>
+              <svg
+                class="tier-cuisine-kitchen-video__play-svg"
+                width="193"
+                height="193"
+                viewBox="0 0 193 193"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path d="M96.4999 176.917C140.913 176.917 176.917 140.913 176.917 96.5002C176.917 52.0873 140.913 16.0835 96.4999 16.0835C52.087 16.0835 16.0832 52.0873 16.0832 96.5002C16.0832 140.913 52.087 176.917 96.4999 176.917Z" fill="#D2BD92" fill-opacity="0.28" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M80.4167 64.3335L128.667 96.5002L80.4167 128.667V64.3335Z" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            {%- if section.settings.video_cta_label != blank -%}
+              <span class="tier-cuisine-kitchen-video__pill">
+                {{ section.settings.video_cta_label | escape }}
+              </span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
     </div>
   {%- endif -%}
 </div>
+
+{%- if kv_video != blank and kv_sources_count > 0 -%}
+  <script>
+    (() => {
+      const root = document.querySelector('#TierCuisineKitchenVideo-{{ section.id }} [data-tc-kitchen-video-root]');
+      if (!root) return;
+      const video = root.querySelector('[data-tc-kitchen-video]');
+      const overlay = root.querySelector('[data-tc-kitchen-overlay]');
+      const btn = root.querySelector('[data-tc-kitchen-play]');
+      if (!video || !overlay || !btn) return;
+
+      const play = () => {
+        video.setAttribute('controls', 'controls');
+        video.play().catch(() => {});
+        overlay.classList.add('tier-cuisine-kitchen-video__overlay--hide');
+      };
+
+      btn.addEventListener('click', play);
+      video.addEventListener('play', () => {
+        overlay.classList.add('tier-cuisine-kitchen-video__overlay--hide');
+      });
+    })();
+  </script>
+{%- endif -%}
 
 {% stylesheet %}
   .tier-cuisine-kitchen-video {
@@ -173,30 +242,61 @@
     height: 0;
   }
 
-  .tier-cuisine-kitchen-video__media-inner {
+  .tier-cuisine-kitchen-video__el,
+  .tier-cuisine-kitchen-video__poster--only {
     position: absolute;
     inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .tier-cuisine-kitchen-video__poster {
-    position: absolute;
-    inset: 0;
+    z-index: 1;
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
 
-  .tier-cuisine-kitchen-video__play {
-    position: relative;
-    z-index: 1;
+  .tier-cuisine-kitchen-video__el {
+    background: #000;
+  }
+
+  .tier-cuisine-kitchen-video__embed {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .tier-cuisine-kitchen-video__embed video,
+  .tier-cuisine-kitchen-video__embed iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .tier-cuisine-kitchen-video__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 0;
     pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+
+  .tier-cuisine-kitchen-video__overlay--hide {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .tier-cuisine-kitchen-video__play-btn {
+    pointer-events: auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    line-height: 0;
   }
 
   .tier-cuisine-kitchen-video__play-svg {
@@ -217,7 +317,7 @@
     bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 2;
+    z-index: 3;
     padding: 0.5rem 1.25rem;
     border-radius: 999px;
     background: rgb(255 255 255 / 92%);
@@ -326,20 +426,21 @@
       "content": "Video"
     },
     {
-      "type": "image_picker",
-      "id": "cover_image",
-      "label": "Preview image"
+      "type": "video",
+      "id": "video",
+      "label": "Video file",
+      "info": "Upload a video file. Custom play button shows for uploaded MP4/WebM; other sources use standard player."
     },
     {
-      "type": "url",
-      "id": "video_url",
-      "label": "Video link",
-      "info": "YouTube, Vimeo, or hosted video URL"
+      "type": "image_picker",
+      "id": "cover_image",
+      "label": "Preview image",
+      "info": "Required if no video file is selected — the block shows this image. With a video, it is used as the poster/cover when set."
     },
     {
       "type": "text",
-      "id": "video_link_label",
-      "label": "Video link accessibility label",
+      "id": "video_play_label",
+      "label": "Play button accessibility label",
       "default": "Video abspielen"
     },
     {
