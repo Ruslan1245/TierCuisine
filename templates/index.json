@@ -175,9 +175,9 @@
       ],
       "name": "Tier Cuisine dual grid",
       "settings": {
-        "padding_top_desktop": 80,
+        "padding_top_desktop": 52,
         "padding_bottom_desktop": 0,
-        "padding_top_mobile": 40,
+        "padding_top_mobile": 25,
         "padding_bottom_mobile": 0,
         "heading": "<p>Tierarzt-Knowhow trifft <em>Kochkunst</em>:</p>",
         "subheading": "<p>Premiumfutter für gesunde und glückliche Hunde & Katzen.</p>",
