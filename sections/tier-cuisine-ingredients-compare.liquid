@@ -1,0 +1,724 @@
+<div
+  class="section section--full-width tier-cuisine-ingredients"
+  id="TierCuisineIngredients-{{ section.id }}"
+  style="
+    --tc-ing-pad-top-d: {{ section.settings.padding_top_desktop }}px;
+    --tc-ing-pad-bot-d: {{ section.settings.padding_bottom_desktop }}px;
+    --tc-ing-pad-top-m: {{ section.settings.padding_top_mobile }}px;
+    --tc-ing-pad-bot-m: {{ section.settings.padding_bottom_mobile }}px;
+    --tc-compare-pos: 50%;
+  "
+>
+  <div class="tier-cuisine-ingredients__inner page-width">
+    {%- if section.settings.heading != blank -%}
+      <div class="tier-cuisine-ingredients__heading rte">
+        {{ section.settings.heading }}
+      </div>
+    {%- endif -%}
+
+    <div class="tier-cuisine-ingredients__stage">
+      {%- if section.settings.image_compare_a != blank and section.settings.image_compare_b != blank -%}
+        <div
+          class="tier-cuisine-ingredients__compare-root"
+          data-tc-compare-root
+          data-tc-compare-initial="50"
+        >
+          <div class="tier-cuisine-ingredients__compare" data-tc-compare>
+            <div class="tier-cuisine-ingredients__compare-layer tier-cuisine-ingredients__compare-layer--b">
+              {{
+                section.settings.image_compare_b
+                | image_url: width: 1200
+                | image_tag:
+                  loading: 'lazy',
+                  class: 'tier-cuisine-ingredients__compare-img',
+                  widths: '400, 600, 800, 1000, 1200',
+                  sizes: '(min-width: 750px) min(42vw, 520px), 88vw',
+                  alt: section.settings.image_compare_b.alt | default: ''
+              }}
+            </div>
+            <div class="tier-cuisine-ingredients__compare-layer tier-cuisine-ingredients__compare-layer--a" data-tc-compare-clip>
+              {{
+                section.settings.image_compare_a
+                | image_url: width: 1200
+                | image_tag:
+                  loading: 'lazy',
+                  class: 'tier-cuisine-ingredients__compare-img',
+                  widths: '400, 600, 800, 1000, 1200',
+                  sizes: '(min-width: 750px) min(42vw, 520px), 88vw',
+                  alt: section.settings.image_compare_a.alt | default: ''
+              }}
+            </div>
+            <button
+              type="button"
+              class="tier-cuisine-ingredients__compare-handle"
+              data-tc-compare-handle
+              aria-label="Before and after comparison"
+            >
+              <span class="tier-cuisine-ingredients__compare-handle-inner" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 8L18 12L14 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M10 8L6 12L10 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      {%- elsif section.settings.image_compare_a != blank -%}
+        <div class="tier-cuisine-ingredients__compare-root tier-cuisine-ingredients__compare-root--single">
+          <div class="tier-cuisine-ingredients__compare">
+            <div class="tier-cuisine-ingredients__compare-layer tier-cuisine-ingredients__compare-layer--b">
+              {{
+                section.settings.image_compare_a
+                | image_url: width: 1200
+                | image_tag:
+                  loading: 'lazy',
+                  class: 'tier-cuisine-ingredients__compare-img',
+                  widths: '400, 600, 800, 1000, 1200',
+                  sizes: '(min-width: 750px) min(42vw, 520px), 88vw',
+                  alt: section.settings.image_compare_a.alt | default: ''
+              }}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+
+      <div class="tier-cuisine-ingredients__floats" aria-hidden="true">
+        {%- if section.settings.image_float_tl != blank -%}
+          <div class="tier-cuisine-ingredients__float tier-cuisine-ingredients__float--tl">
+            {{
+              section.settings.image_float_tl
+              | image_url: width: 600
+              | image_tag:
+                loading: 'lazy',
+                class: 'tier-cuisine-ingredients__float-img',
+                widths: '120, 200, 300, 400, 600',
+                sizes: '(min-width: 750px) 12vw, 28vw',
+                alt: section.settings.image_float_tl.alt | default: ''
+            }}
+          </div>
+        {%- endif -%}
+        {%- if section.settings.image_float_bl != blank -%}
+          <div class="tier-cuisine-ingredients__float tier-cuisine-ingredients__float--bl">
+            {{
+              section.settings.image_float_bl
+              | image_url: width: 600
+              | image_tag:
+                loading: 'lazy',
+                class: 'tier-cuisine-ingredients__float-img',
+                widths: '120, 200, 300, 400, 600',
+                sizes: '(min-width: 750px) 12vw, 28vw',
+                alt: section.settings.image_float_bl.alt | default: ''
+            }}
+          </div>
+        {%- endif -%}
+        {%- if section.settings.image_float_tr != blank -%}
+          <div class="tier-cuisine-ingredients__float tier-cuisine-ingredients__float--tr">
+            {{
+              section.settings.image_float_tr
+              | image_url: width: 600
+              | image_tag:
+                loading: 'lazy',
+                class: 'tier-cuisine-ingredients__float-img',
+                widths: '120, 200, 300, 400, 600',
+                sizes: '(min-width: 750px) 12vw, 28vw',
+                alt: section.settings.image_float_tr.alt | default: ''
+            }}
+          </div>
+        {%- endif -%}
+        {%- if section.settings.image_float_br != blank -%}
+          <div class="tier-cuisine-ingredients__float tier-cuisine-ingredients__float--br">
+            {{
+              section.settings.image_float_br
+              | image_url: width: 600
+              | image_tag:
+                loading: 'lazy',
+                class: 'tier-cuisine-ingredients__float-img',
+                widths: '120, 200, 300, 400, 600',
+                sizes: '(min-width: 750px) 12vw, 28vw',
+                alt: section.settings.image_float_br.alt | default: ''
+            }}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="tier-cuisine-ingredients__features">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'feature' -%}
+            <div class="tier-cuisine-ingredients__feature" {{ block.shopify_attributes }}>
+              <div class="tier-cuisine-ingredients__circle">
+                {%- if block.settings.icon_image != blank -%}
+                  {{
+                    block.settings.icon_image
+                    | image_url: width: 120
+                    | image_tag:
+                      loading: 'lazy',
+                      class: 'tier-cuisine-ingredients__circle-img',
+                      widths: '60, 80, 120',
+                      sizes: '48px',
+                      alt: block.settings.icon_image.alt | default: ''
+                  }}
+                {%- endif -%}
+              </div>
+              {%- if block.settings.text != blank -%}
+                <div class="tier-cuisine-ingredients__feature-text rte">
+                  {{ block.settings.text }}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.button_label != blank -%}
+      <div class="tier-cuisine-ingredients__cta">
+        <a
+          class="tier-cuisine-ingredients__btn"
+          href="{% if section.settings.button_link != blank %}{{ section.settings.button_link }}{% else %}#{% endif %}"
+        >
+          {{ section.settings.button_label | escape }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  (() => {
+    const sectionId = 'TierCuisineIngredients-{{ section.id }}';
+    const root = () => document.getElementById(sectionId);
+    const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
+
+    const bindCompare = (el) => {
+      const compare = el.querySelector('[data-tc-compare]');
+      const clipLayer = el.querySelector('[data-tc-compare-clip]');
+      const handle = el.querySelector('[data-tc-compare-handle]');
+      if (!compare || !clipLayer || !handle) return;
+
+      let pos = parseFloat(el.dataset.tcCompareInitial || '50');
+      if (Number.isNaN(pos)) pos = 50;
+
+      const setPos = (pct) => {
+        pos = clamp(pct, 0, 100);
+        el.style.setProperty('--tc-compare-pos', pos + '%');
+        clipLayer.style.clipPath = 'inset(0 calc(100% - ' + pos + '%) 0 0)';
+        handle.style.left = 'calc(' + pos + '% - 22px)';
+        handle.setAttribute('aria-valuenow', Math.round(pos));
+      };
+
+      handle.setAttribute('role', 'slider');
+      handle.setAttribute('aria-valuemin', '0');
+      handle.setAttribute('aria-valuemax', '100');
+      setPos(pos);
+
+      const rectPct = (clientX) => {
+        const r = compare.getBoundingClientRect();
+        if (r.width <= 0) return pos;
+        return clamp(((clientX - r.left) / r.width) * 100, 0, 100);
+      };
+
+      let active = false;
+      const onMove = (e) => {
+        if (!active) return;
+        setPos(rectPct(e.clientX));
+      };
+      const onUp = () => {
+        active = false;
+        document.removeEventListener('pointermove', onMove);
+        document.removeEventListener('pointerup', onUp);
+        document.removeEventListener('pointercancel', onUp);
+      };
+      const onDown = (e) => {
+        active = true;
+        setPos(rectPct(e.clientX));
+        document.addEventListener('pointermove', onMove);
+        document.addEventListener('pointerup', onUp);
+        document.addEventListener('pointercancel', onUp);
+      };
+
+      handle.addEventListener('pointerdown', onDown);
+
+      handle.addEventListener('keydown', (e) => {
+        let next = pos;
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') next = pos - 2;
+        else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') next = pos + 2;
+        else if (e.key === 'Home') next = 0;
+        else if (e.key === 'End') next = 100;
+        else return;
+        e.preventDefault();
+        setPos(next);
+      });
+    };
+
+    const init = () => {
+      const section = root();
+      if (!section || section.dataset.tcCompareReady === 'true') return;
+      const roots = section.querySelectorAll('[data-tc-compare-root]');
+      roots.forEach((r) => {
+        if (r.querySelector('[data-tc-compare-handle]')) {
+          bindCompare(r);
+        }
+      });
+      section.dataset.tcCompareReady = 'true';
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init, { once: true });
+    } else {
+      init();
+    }
+    document.addEventListener('shopify:section:load', (e) => {
+      if (e.target.querySelector && e.target.querySelector('#' + sectionId)) {
+        const s = root();
+        if (s) s.dataset.tcCompareReady = 'false';
+        init();
+      }
+    });
+  })();
+</script>
+
+{% stylesheet %}
+  .tier-cuisine-ingredients {
+    position: relative;
+    overflow: visible;
+    padding-block-start: var(--tc-ing-pad-top-m);
+    padding-block-end: var(--tc-ing-pad-bot-m);
+  }
+
+  @media screen and (min-width: 750px) {
+    .tier-cuisine-ingredients {
+      padding-block-start: var(--tc-ing-pad-top-d);
+      padding-block-end: var(--tc-ing-pad-bot-d);
+    }
+  }
+
+  .tier-cuisine-ingredients__inner {
+    max-width: 72rem;
+    margin-inline: auto;
+  }
+
+  .tier-cuisine-ingredients__heading.rte {
+    margin: 0;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: clamp(1.75rem, 5vw, 48px);
+    line-height: 130%;
+    text-align: center;
+    color: var(--tc-almost-black-500);
+  }
+
+  .tier-cuisine-ingredients__heading.rte p {
+    margin: 0;
+  }
+
+  .tier-cuisine-ingredients__heading.rte em,
+  .tier-cuisine-ingredients__heading.rte i {
+    font-family: var(--second-family);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .tier-cuisine-ingredients__stage {
+    position: relative;
+    margin-top: 2.5rem;
+    min-height: min(90vw, 520px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 750px) {
+    .tier-cuisine-ingredients__stage {
+      margin-top: 3rem;
+      min-height: 28rem;
+    }
+  }
+
+  .tier-cuisine-ingredients__compare-root {
+    position: relative;
+    z-index: 2;
+    width: min(88vw, 520px);
+    max-width: 100%;
+  }
+
+  .tier-cuisine-ingredients__compare {
+    position: relative;
+    width: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    aspect-ratio: 1;
+    background: #f0f0f0;
+    touch-action: none;
+  }
+
+  .tier-cuisine-ingredients__compare-layer {
+    position: absolute;
+    inset: 0;
+  }
+
+  .tier-cuisine-ingredients__compare-layer--b {
+    z-index: 1;
+  }
+
+  .tier-cuisine-ingredients__compare-layer--a {
+    z-index: 2;
+    clip-path: inset(0 calc(100% - var(--tc-compare-pos, 50%)) 0 0);
+  }
+
+  .tier-cuisine-ingredients__compare-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .tier-cuisine-ingredients__compare-handle {
+    position: absolute;
+    top: 50%;
+    left: calc(var(--tc-compare-pos, 50%) - 22px);
+    z-index: 3;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 12px rgb(0 0 0 / 18%);
+    cursor: ew-resize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    touch-action: none;
+  }
+
+  .tier-cuisine-ingredients__compare-handle-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tier-cuisine-ingredients__floats {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .tier-cuisine-ingredients__float {
+    position: absolute;
+    width: min(28vw, 200px);
+    max-width: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 32px rgb(0 0 0 / 10%);
+  }
+
+  .tier-cuisine-ingredients__float--tl {
+    top: 2%;
+    left: max(0px, calc(50% - 26rem));
+    transform: rotate(-6deg);
+  }
+
+  .tier-cuisine-ingredients__float--bl {
+    bottom: 6%;
+    left: max(0px, calc(50% - 25rem));
+    transform: rotate(5deg);
+  }
+
+  .tier-cuisine-ingredients__float--tr {
+    top: 4%;
+    right: max(0px, calc(50% - 26rem));
+    transform: rotate(7deg);
+  }
+
+  .tier-cuisine-ingredients__float--br {
+    bottom: 4%;
+    right: max(0px, calc(50% - 25rem));
+    transform: rotate(-5deg);
+  }
+
+  .tier-cuisine-ingredients__float-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  @media screen and (max-width: 749px) {
+    .tier-cuisine-ingredients__stage {
+      min-height: 0;
+    }
+
+    .tier-cuisine-ingredients__floats {
+      position: static;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      margin-top: 1.25rem;
+      padding-inline: 0;
+      pointer-events: auto;
+    }
+
+    .tier-cuisine-ingredients__float {
+      position: relative;
+      top: auto;
+      right: auto;
+      bottom: auto;
+      left: auto;
+      width: calc(25% - 6px);
+      min-width: 4.5rem;
+      max-width: 6.5rem;
+      transform: none;
+    }
+  }
+
+  .tier-cuisine-ingredients__features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem 2rem;
+    margin-top: 2.5rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .tier-cuisine-ingredients__features {
+      margin-top: 3rem;
+      gap: 2rem 2.5rem;
+    }
+  }
+
+  .tier-cuisine-ingredients__feature {
+    flex: 1 1 10rem;
+    max-width: 14rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tier-cuisine-ingredients__circle {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: transparent;
+  }
+
+  .tier-cuisine-ingredients__circle-img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .tier-cuisine-ingredients__feature-text.rte {
+    margin: 25px 0 0;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    color: #000;
+  }
+
+  .tier-cuisine-ingredients__feature-text.rte p {
+    margin: 0;
+  }
+
+  .tier-cuisine-ingredients__cta {
+    margin-top: 64px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .tier-cuisine-ingredients__btn {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 10px;
+    width: 435px;
+    max-width: 100%;
+    height: 62px;
+    background: var(--tc-almost-black-500);
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 24px;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "TC ingredients compare",
+  "tag": "section",
+  "class": "section-wrapper",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Padding — desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Padding — mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Title",
+      "default": "<p>Unser Erfolg: Ganz einfach!</p><p>Nur pure, <em>ehrliche Zutaten</em></p><p><em>in Lebensmittelqualität</em></p>"
+    },
+    {
+      "type": "header",
+      "content": "Center — before / after"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_compare_a",
+      "label": "Image A (left / before)",
+      "info": "Shown on the left; draggable reveal."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_compare_b",
+      "label": "Image B (right / after)",
+      "info": "Full circle underneath; required for split slider."
+    },
+    {
+      "type": "header",
+      "content": "Floating images (corners)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_float_tl",
+      "label": "Top left"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_float_bl",
+      "label": "Bottom left"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_float_tr",
+      "label": "Top right"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_float_br",
+      "label": "Bottom right"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Mehr über unsere Zutaten erfahren"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon in circle (optional)"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>getreidefrei</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TC ingredients compare",
+      "category": "Storytelling",
+      "blocks": [
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
