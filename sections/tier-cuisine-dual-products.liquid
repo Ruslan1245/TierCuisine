@@ -28,47 +28,47 @@
         <div class="tier-cuisine-dual-products__stack">
           {%- for block in section.blocks -%}
             {%- if block.type == 'left_product' -%}
-            <div class="tier-cuisine-dual-products__block" {{ block.shopify_attributes }}>
-              {%- if block.settings.image != blank -%}
-                {% liquid
-                  assign img_alt = block.settings.image.alt | default: block.settings.title
-                %}
-                <div
-                  class="tier-cuisine-dual-products__circle"
-                  style="--tc-circle-bg: {{ section.settings.left_circle_bg }};"
-                >
-                  {{
-                    block.settings.image
-                    | image_url: width: 800
-                    | image_tag:
-                      loading: 'lazy',
-                      class: 'tier-cuisine-dual-products__img',
-                      widths: '200, 300, 400, 600, 800',
-                      sizes: '(min-width: 750px) 28vw, 60vw',
-                      alt: img_alt,
-                      width: block.settings.image.width,
-                      height: block.settings.image.height
-                  }}
-                </div>
-              {%- endif -%}
+              <div class="tier-cuisine-dual-products__block" {{ block.shopify_attributes }}>
+                {%- if block.settings.image != blank -%}
+                  {% liquid
+                    assign img_alt = block.settings.image.alt | default: block.settings.title
+                  %}
+                  <div
+                    class="tier-cuisine-dual-products__circle"
+                    style="--tc-circle-bg: {{ section.settings.left_circle_bg }};"
+                  >
+                    {{
+                      block.settings.image
+                      | image_url: width: 800
+                      | image_tag:
+                        loading: 'lazy',
+                        class: 'tier-cuisine-dual-products__img',
+                        widths: '200, 300, 400, 600, 800',
+                        sizes: '(min-width: 750px) 28vw, 60vw',
+                        alt: img_alt,
+                        width: block.settings.image.width,
+                        height: block.settings.image.height
+                    }}
+                  </div>
+                {%- endif -%}
 
-              {%- if block.settings.title != blank -%}
-                <p class="tier-cuisine-dual-products__block-title">{{ block.settings.title | escape }}</p>
-              {%- endif -%}
+                {%- if block.settings.title != blank -%}
+                  <p class="tier-cuisine-dual-products__block-title">{{ block.settings.title | escape }}</p>
+                {%- endif -%}
 
-              {%- if block.settings.button_label != blank -%}
-                <a
-                  class="tier-cuisine-dual-products__btn"
-                  href="{{ block.settings.button_link | default: '#' }}"
-                  style="
-                    --tc-btn-bg: {{ block.settings.button_background }};
-                    --tc-btn-border: {{ block.settings.button_background }};
-                  "
-                >
-                  {{ block.settings.button_label | escape }}
-                </a>
-              {%- endif -%}
-            </div>
+                {%- if block.settings.button_label != blank -%}
+                  <a
+                    class="tier-cuisine-dual-products__btn"
+                    href="{{ block.settings.button_link | default: '#' }}"
+                    style="
+                      --tc-btn-bg: {{ block.settings.button_background }};
+                      --tc-btn-border: {{ block.settings.button_background }};
+                    "
+                  >
+                    {{ block.settings.button_label | escape }}
+                  </a>
+                {%- endif -%}
+              </div>
             {%- endif -%}
           {%- endfor -%}
         </div>
@@ -89,47 +89,47 @@
         <div class="tier-cuisine-dual-products__stack">
           {%- for block in section.blocks -%}
             {%- if block.type == 'right_product' -%}
-            <div class="tier-cuisine-dual-products__block" {{ block.shopify_attributes }}>
-              {%- if block.settings.image != blank -%}
-                {% liquid
-                  assign img_alt = block.settings.image.alt | default: block.settings.title
-                %}
-                <div
-                  class="tier-cuisine-dual-products__circle"
-                  style="--tc-circle-bg: {{ section.settings.right_circle_bg }};"
-                >
-                  {{
-                    block.settings.image
-                    | image_url: width: 800
-                    | image_tag:
-                      loading: 'lazy',
-                      class: 'tier-cuisine-dual-products__img',
-                      widths: '200, 300, 400, 600, 800',
-                      sizes: '(min-width: 750px) 28vw, 60vw',
-                      alt: img_alt,
-                      width: block.settings.image.width,
-                      height: block.settings.image.height
-                  }}
-                </div>
-              {%- endif -%}
+              <div class="tier-cuisine-dual-products__block" {{ block.shopify_attributes }}>
+                {%- if block.settings.image != blank -%}
+                  {% liquid
+                    assign img_alt = block.settings.image.alt | default: block.settings.title
+                  %}
+                  <div
+                    class="tier-cuisine-dual-products__circle"
+                    style="--tc-circle-bg: {{ section.settings.right_circle_bg }};"
+                  >
+                    {{
+                      block.settings.image
+                      | image_url: width: 800
+                      | image_tag:
+                        loading: 'lazy',
+                        class: 'tier-cuisine-dual-products__img',
+                        widths: '200, 300, 400, 600, 800',
+                        sizes: '(min-width: 750px) 28vw, 60vw',
+                        alt: img_alt,
+                        width: block.settings.image.width,
+                        height: block.settings.image.height
+                    }}
+                  </div>
+                {%- endif -%}
 
-              {%- if block.settings.title != blank -%}
-                <p class="tier-cuisine-dual-products__block-title">{{ block.settings.title | escape }}</p>
-              {%- endif -%}
+                {%- if block.settings.title != blank -%}
+                  <p class="tier-cuisine-dual-products__block-title">{{ block.settings.title | escape }}</p>
+                {%- endif -%}
 
-              {%- if block.settings.button_label != blank -%}
-                <a
-                  class="tier-cuisine-dual-products__btn"
-                  href="{{ block.settings.button_link | default: '#' }}"
-                  style="
-                    --tc-btn-bg: {{ block.settings.button_background }};
-                    --tc-btn-border: {{ block.settings.button_background }};
-                  "
-                >
-                  {{ block.settings.button_label | escape }}
-                </a>
-              {%- endif -%}
-            </div>
+                {%- if block.settings.button_label != blank -%}
+                  <a
+                    class="tier-cuisine-dual-products__btn"
+                    href="{{ block.settings.button_link | default: '#' }}"
+                    style="
+                      --tc-btn-bg: {{ block.settings.button_background }};
+                      --tc-btn-border: {{ block.settings.button_background }};
+                    "
+                  >
+                    {{ block.settings.button_label | escape }}
+                  </a>
+                {%- endif -%}
+              </div>
             {%- endif -%}
           {%- endfor -%}
         </div>
@@ -293,7 +293,7 @@
     max-width: 22rem;
   }
 
-  .tier-cuisine-dual-products__circle {
+  /* .tier-cuisine-dual-products__circle {
     width: min(100%, 240px);
     aspect-ratio: 1;
     border-radius: 50%;
@@ -303,12 +303,12 @@
     justify-content: center;
     overflow: hidden;
     margin-bottom: 20px;
-  }
+  } */
 
   .tier-cuisine-dual-products__img {
-    width: 72%;
+    width: 100%;
     height: auto;
-    max-height: 85%;
+    max-height: 100%;
     object-fit: contain;
   }
 
