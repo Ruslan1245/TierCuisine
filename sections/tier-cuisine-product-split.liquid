@@ -1,0 +1,414 @@
+{%- liquid
+  assign tc_product = section.settings.product
+  assign product_image = section.settings.product_image
+  if product_image == blank and tc_product != blank
+    assign product_image = tc_product.featured_image
+  endif
+
+  assign product_title = ''
+  assign product_url = ''
+  assign product_price_html = ''
+  if tc_product != blank
+    assign product_title = tc_product.title
+    assign product_url = tc_product.url
+    assign product_price_html = tc_product.price | money
+  endif
+
+  assign reverse_class = ''
+  if section.settings.reverse_layout
+    assign reverse_class = 'tier-cuisine-product-split__grid--reverse'
+  endif
+
+  assign product_img_alt = product_title
+  if product_image != blank
+    assign product_img_alt = product_image.alt | default: product_title
+  endif
+-%}
+
+<div
+  class="section section--full-width tier-cuisine-product-split"
+  id="TierCuisineProductSplit-{{ section.id }}"
+  style="
+    --tc-split-pad-top-d: {{ section.settings.padding_top_desktop }}px;
+    --tc-split-pad-bot-d: {{ section.settings.padding_bottom_desktop }}px;
+    --tc-split-pad-top-m: {{ section.settings.padding_top_mobile }}px;
+    --tc-split-pad-bot-m: {{ section.settings.padding_bottom_mobile }}px;
+    --tc-split-left-bg: {{ section.settings.left_background }};
+    --tc-split-btn-bg: {{ section.settings.button_background }};
+    --tc-split-btn-fg: {{ section.settings.button_text_color }};
+  "
+>
+  <div class="tier-cuisine-product-split__grid {{ reverse_class }}">
+    <div class="tier-cuisine-product-split__col tier-cuisine-product-split__col--left">
+      <div class="tier-cuisine-product-split__left-inner">
+        {%- if product_image != blank -%}
+          <div class="tier-cuisine-product-split__product-media">
+            {{
+              product_image
+              | image_url: width: 1200
+              | image_tag:
+                loading: 'lazy',
+                class: 'tier-cuisine-product-split__product-img',
+                widths: '300, 400, 600, 800, 1000, 1200',
+                sizes: '(min-width: 750px) 40vw, 85vw',
+                alt: product_img_alt
+            }}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.category != blank -%}
+          <p class="tier-cuisine-product-split__category">{{ section.settings.category | escape }}</p>
+        {%- endif -%}
+
+        {%- if product_title != blank -%}
+          <h2 class="tier-cuisine-product-split__title">{{ product_title | escape }}</h2>
+        {%- endif -%}
+
+        {%- if tc_product != blank -%}
+          <p class="tier-cuisine-product-split__price">{{ product_price_html }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.button_label != blank and tc_product != blank -%}
+          <a
+            class="tier-cuisine-product-split__btn"
+            href="{{ product_url }}"
+          >
+            <span class="tier-cuisine-product-split__btn-icon" aria-hidden="true">
+              {{- 'icon-add-to-cart.svg' | inline_asset_content -}}
+            </span>
+            <span class="tier-cuisine-product-split__btn-text">{{ section.settings.button_label | escape }}</span>
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="tier-cuisine-product-split__col tier-cuisine-product-split__col--right">
+      {%- if section.settings.right_image != blank -%}
+        {% liquid
+          assign right_img_alt = section.settings.right_image.alt | default: ''
+        %}
+        {{
+          section.settings.right_image
+          | image_url: width: 2400
+          | image_tag:
+            loading: 'lazy',
+            class: 'tier-cuisine-product-split__right-img',
+            widths: '400, 600, 800, 1200, 1600, 2000, 2400',
+            sizes: '(min-width: 750px) 50vw, 100vw',
+            alt: right_img_alt
+        }}
+      {%- else -%}
+        <div class="tier-cuisine-product-split__right-placeholder" aria-hidden="true"></div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .tier-cuisine-product-split {
+    padding-block-start: var(--tc-split-pad-top-m);
+    padding-block-end: var(--tc-split-pad-bot-m);
+  }
+
+  @media screen and (min-width: 750px) {
+    .tier-cuisine-product-split {
+      padding-block-start: var(--tc-split-pad-top-d);
+      padding-block-end: var(--tc-split-pad-bot-d);
+    }
+  }
+
+  .tier-cuisine-product-split__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    min-height: min(70svh, 720px);
+  }
+
+  .tier-cuisine-product-split__grid--reverse .tier-cuisine-product-split__col--left {
+    order: 2;
+  }
+
+  .tier-cuisine-product-split__grid--reverse .tier-cuisine-product-split__col--right {
+    order: 1;
+  }
+
+  @media screen and (max-width: 749px) {
+    .tier-cuisine-product-split__grid {
+      grid-template-columns: 1fr;
+      min-height: unset;
+    }
+
+    /* Lifestyle image first, product block below */
+    .tier-cuisine-product-split__col--right {
+      order: 1;
+    }
+
+    .tier-cuisine-product-split__col--left {
+      order: 2;
+    }
+  }
+
+  .tier-cuisine-product-split__col--left {
+    background-color: var(--tc-split-left-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.25rem 2.5rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .tier-cuisine-product-split__col--left {
+      padding: clamp(2rem, 4vw, 4rem);
+    }
+  }
+
+  .tier-cuisine-product-split__left-inner {
+    width: 100%;
+    max-width: 28rem;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .tier-cuisine-product-split__product-media {
+    width: 100%;
+    max-width: min(20rem, 72vw);
+    margin-block-end: 0.5rem;
+  }
+
+  .tier-cuisine-product-split__product-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .tier-cuisine-product-split__category {
+    margin: 0;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #000;
+  }
+
+  .tier-cuisine-product-split__title {
+    margin: 0;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: clamp(1.25rem, 4vw, 29px);
+    line-height: 130%;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #000;
+  }
+
+  .tier-cuisine-product-split__price {
+    margin: 0;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    color: #000;
+  }
+
+  .tier-cuisine-product-split__btn {
+    margin-top: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    min-height: 3rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    color: var(--tc-split-btn-fg);
+    background-color: var(--tc-split-btn-bg);
+    border: 1px solid var(--tc-split-btn-bg);
+    transition: opacity 0.2s ease;
+  }
+
+  .tier-cuisine-product-split__btn:hover {
+    opacity: 0.92;
+  }
+
+  .tier-cuisine-product-split__btn-icon {
+    display: flex;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .tier-cuisine-product-split__btn-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .tier-cuisine-product-split__col--right {
+    position: relative;
+    min-height: 16rem;
+    background: rgb(0 0 0 / 6%);
+  }
+
+  @media screen and (min-width: 750px) {
+    .tier-cuisine-product-split__col--right {
+      min-height: 0;
+    }
+  }
+
+  .tier-cuisine-product-split__right-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .tier-cuisine-product-split__right-placeholder {
+    position: absolute;
+    inset: 0;
+    background: rgb(0 0 0 / 8%);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "TC product split",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Padding — desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Padding — mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "reverse_layout",
+      "label": "Reverse columns (image left, product right)",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Left column"
+    },
+    {
+      "type": "color",
+      "id": "left_background",
+      "label": "Background",
+      "default": "#b8cbc5"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image (optional — uses product image if empty)"
+    },
+    {
+      "type": "text",
+      "id": "category",
+      "label": "Category",
+      "default": "KATZEN NASSFUTTER"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "In den Warenkorb"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Right column"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "TC product split",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
