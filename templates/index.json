@@ -212,6 +212,19 @@
         "button_2_link": "#"
       }
     },
+    "tier_cuisine_products_carousel_pwTLDj": {
+      "type": "tier-cuisine-products-carousel",
+      "name": "TC products slider",
+      "settings": {
+        "padding_top_desktop": 60,
+        "padding_bottom_desktop": 60,
+        "padding_top_mobile": 30,
+        "padding_bottom_mobile": 30,
+        "badge_text": "PRODUKTE",
+        "heading": "<p>Tierfutter, so naturlich wie selbstgekocht, das Hunde und Katzen lieben</p>",
+        "button_label": "Zum Produkt"
+      }
+    },
     "product_list_fa6P9H": {
       "type": "product-list",
       "blocks": {
@@ -495,6 +508,7 @@
     "tier_cuisine_trust_bar_BfRWDb",
     "tier_cuisine_dual_products_K6bCRr",
     "tier_cuisine_sale_promo_z6Rqx4",
+    "tier_cuisine_products_carousel_pwTLDj",
     "product_list_fa6P9H",
     "section_GAeaWB"
   ]
