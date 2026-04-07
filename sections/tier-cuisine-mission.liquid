@@ -1,0 +1,530 @@
+<div
+  class="section section--full-width tier-cuisine-mission"
+  id="TierCuisineMission-{{ section.id }}"
+  style="
+    --tc-mission-pad-top-d: {{ section.settings.padding_top_desktop }}px;
+    --tc-mission-pad-bot-d: {{ section.settings.padding_bottom_desktop }}px;
+    --tc-mission-pad-top-m: {{ section.settings.padding_top_mobile }}px;
+    --tc-mission-pad-bot-m: {{ section.settings.padding_bottom_mobile }}px;
+  "
+>
+  <div class="tier-cuisine-mission__inner page-width">
+    {%- if section.settings.badge_text != blank -%}
+      <p class="tier-cuisine-mission__badge">{{ section.settings.badge_text | escape }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.title != blank -%}
+      <div class="tier-cuisine-mission__title rte">
+        {{ section.settings.title }}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.subtitle != blank -%}
+      <div class="tier-cuisine-mission__subtitle rte">
+        {{ section.settings.subtitle }}
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="tier-cuisine-mission__features">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'feature' -%}
+            <div class="tier-cuisine-mission__feature" {{ block.shopify_attributes }}>
+              <div
+                class="tier-cuisine-mission__circle"
+                style="--tc-mission-circle-bg: {{ block.settings.circle_background }};"
+              >
+                {%- if block.settings.icon_svg != blank -%}
+                  <span class="tier-cuisine-mission__circle-icon">
+                    {% # theme-check-disable UnknownFilter %}
+                    {{ block.settings.icon_svg | strip | raw }}
+                    {% # theme-check-enable UnknownFilter %}
+                  </span>
+                {%- elsif block.settings.icon_image != blank -%}
+                  <span class="tier-cuisine-mission__circle-icon tier-cuisine-mission__circle-icon--image">
+                    {{
+                      block.settings.icon_image
+                      | image_url: width: 120
+                      | image_tag:
+                        loading: 'lazy',
+                        class: 'tier-cuisine-mission__circle-icon-img',
+                        widths: '60, 80, 120',
+                        sizes: '60px',
+                        alt: block.settings.icon_image.alt | default: ''
+                    }}
+                  </span>
+                {%- endif -%}
+              </div>
+              {%- if block.settings.text != blank -%}
+                <div class="tier-cuisine-mission__feature-text rte">
+                  {{ block.settings.text }}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.button_label != blank -%}
+      <div class="tier-cuisine-mission__cta">
+        <a
+          class="tier-cuisine-mission__btn"
+          href="{% if section.settings.button_link != blank %}{{ section.settings.button_link }}{% else %}#{% endif %}"
+        >
+          {{ section.settings.button_label | escape }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="tier-cuisine-mission__decors" aria-hidden="true">
+    {%- if section.settings.image_left != blank -%}
+      <div class="tier-cuisine-mission__decor tier-cuisine-mission__decor--left">
+        {{
+          section.settings.image_left
+          | image_url: width: 900
+          | image_tag:
+            loading: 'lazy',
+            class: 'tier-cuisine-mission__decor-img',
+            widths: '200, 360, 480, 600, 900',
+            sizes: '(min-width: 750px) 22vw, 42vw',
+            alt: section.settings.image_left.alt | default: ''
+        }}
+      </div>
+    {%- endif -%}
+    {%- if section.settings.image_right != blank -%}
+      <div class="tier-cuisine-mission__decor tier-cuisine-mission__decor--right">
+        {{
+          section.settings.image_right
+          | image_url: width: 900
+          | image_tag:
+            loading: 'lazy',
+            class: 'tier-cuisine-mission__decor-img',
+            widths: '200, 360, 480, 600, 900',
+            sizes: '(min-width: 750px) 22vw, 42vw',
+            alt: section.settings.image_right.alt | default: ''
+        }}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .tier-cuisine-mission {
+    position: relative;
+    overflow: visible;
+    padding-block-start: var(--tc-mission-pad-top-m);
+    padding-block-end: var(--tc-mission-pad-bot-m);
+  }
+
+  @media screen and (min-width: 750px) {
+    .tier-cuisine-mission {
+      padding-block-start: var(--tc-mission-pad-top-d);
+      padding-block-end: var(--tc-mission-pad-bot-d);
+      min-height: 28rem;
+    }
+  }
+
+  .tier-cuisine-mission__inner {
+    position: relative;
+    z-index: 2;
+    max-width: 52rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .tier-cuisine-mission__badge {
+    margin: 0;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    color: #000;
+  }
+
+  .tier-cuisine-mission__title.rte {
+    margin: 1.25rem 0 0;
+    font-family: var(--second-family);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 47px;
+    line-height: 130%;
+    text-align: center;
+    color: #000;
+  }
+
+  .tier-cuisine-mission__title.rte p {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    text-align: inherit;
+    line-height: inherit;
+  }
+
+  .tier-cuisine-mission__subtitle.rte {
+    margin: 1rem 0 0;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    color: #000;
+  }
+
+  .tier-cuisine-mission__subtitle.rte p {
+    margin: 0;
+  }
+
+  .tier-cuisine-mission__features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem 2rem;
+    margin-top: 2rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .tier-cuisine-mission__features {
+      margin-top: 2.5rem;
+      gap: 2rem 3rem;
+    }
+  }
+
+  .tier-cuisine-mission__feature {
+    flex: 1 1 12rem;
+    max-width: 16rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tier-cuisine-mission__circle {
+    width: 7.5rem;
+    height: 7.5rem;
+    border-radius: 50%;
+    background: var(--tc-mission-circle-bg, #e8dfd4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .tier-cuisine-mission__circle-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: #000;
+  }
+
+  .tier-cuisine-mission__circle-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .tier-cuisine-mission__circle-icon--image {
+    width: auto;
+    height: auto;
+    max-width: 3rem;
+    max-height: 3rem;
+  }
+
+  .tier-cuisine-mission__circle-icon-img {
+    width: auto;
+    height: auto;
+    max-width: 3rem;
+    max-height: 3rem;
+    object-fit: contain;
+    display: block;
+  }
+
+  .tier-cuisine-mission__feature-text.rte {
+    margin: 25px 0 0;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    color: #000;
+  }
+
+  .tier-cuisine-mission__feature-text.rte p {
+    margin: 0;
+  }
+
+  .tier-cuisine-mission__cta {
+    margin-top: 64px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .tier-cuisine-mission__btn {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 10px;
+    width: 393px;
+    max-width: 100%;
+    height: 62px;
+    background: var(--tc-almost-black-500);
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 24px;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .tier-cuisine-mission__decors {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .tier-cuisine-mission__decor {
+    position: absolute;
+    width: min(22vw, 280px);
+    max-width: 280px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgb(0 0 0 / 12%);
+  }
+
+  .tier-cuisine-mission__decor--left {
+    top: 8%;
+    left: max(0px, calc(50% - 50rem));
+    transform: rotate(-8deg);
+  }
+
+  .tier-cuisine-mission__decor--right {
+    bottom: 10%;
+    right: max(0px, calc(50% - 50rem));
+    transform: rotate(8deg);
+  }
+
+  .tier-cuisine-mission__decor-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  @media screen and (max-width: 749px) {
+    .tier-cuisine-mission {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tier-cuisine-mission__decors {
+      position: static;
+      inset: auto;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 2rem;
+      padding-inline: 0.5rem;
+      pointer-events: auto;
+    }
+
+    .tier-cuisine-mission__decor {
+      position: relative;
+      top: auto;
+      right: auto;
+      bottom: auto;
+      left: auto;
+      width: calc(50% - 6px);
+      max-width: 11rem;
+      transform: rotate(-4deg);
+    }
+
+    .tier-cuisine-mission__decor--right {
+      transform: rotate(4deg);
+    }
+
+    .tier-cuisine-mission__title.rte {
+      font-size: clamp(1.75rem, 6vw, 2.75rem);
+    }
+
+    .tier-cuisine-mission__features {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tier-cuisine-mission__feature {
+      max-width: 20rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "TC mission",
+  "tag": "section",
+  "class": "section-wrapper",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Padding — desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Padding — mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge",
+      "default": "Unsere Mission"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>Bestes Futter. Echter Genuss für glückliche & gesunde Tiere</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "<p>Add your subtitle text here.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Decorative images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_left",
+      "label": "Left image (top)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right",
+      "label": "Right image (bottom)"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Über Uns"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "color",
+          "id": "circle_background",
+          "label": "Circle background",
+          "default": "#e8dfd4"
+        },
+        {
+          "type": "textarea",
+          "id": "icon_svg",
+          "label": "Icon SVG",
+          "info": "Paste inline SVG. Optional if you use an image instead."
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon image (optional)",
+          "info": "Used when SVG is empty."
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text below circle",
+          "default": "<p>Feature description</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TC mission",
+      "category": "Storytelling",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "text": "<p>Nur natürliche Zutaten</p>"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "text": "<p>100% Lebensmittelqualität</p>"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "text": "<p>Hergestellt in Deutschland</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

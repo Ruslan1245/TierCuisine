@@ -92,6 +92,17 @@
       </div>
 
       <div class="tier-cuisine-products-carousel__scrollbar" data-tc-products-scrollbar></div>
+
+      {%- if section.settings.footer_link_label != blank -%}
+        <div class="tier-cuisine-products-carousel__footer-link-wrap">
+          <a
+            class="tier-cuisine-products-carousel__footer-link"
+            href="{% if section.settings.footer_link != blank %}{{ section.settings.footer_link }}{% else %}#{% endif %}"
+          >
+            {{ section.settings.footer_link_label | escape }}
+          </a>
+        </div>
+      {%- endif -%}
     </div>
   </div>
 </div>
@@ -393,6 +404,22 @@
     border-radius: 0;
   }
 
+  .tier-cuisine-products-carousel__footer-link-wrap {
+    margin-top: 31px;
+    text-align: center;
+  }
+
+  .tier-cuisine-products-carousel__footer-link {
+    display: inline-block;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    text-align: center;
+    color: #000;
+  }
+
   @media screen and (max-width: 749px) {
     .tier-cuisine-products-carousel__badge {
       margin-bottom: 1rem;
@@ -480,6 +507,17 @@
       "id": "button_label",
       "label": "Button label",
       "default": "Zum Produkt"
+    },
+    {
+      "type": "text",
+      "id": "footer_link_label",
+      "label": "Footer link label",
+      "default": "Alle Produkte ansehen"
+    },
+    {
+      "type": "url",
+      "id": "footer_link",
+      "label": "Footer link"
     }
   ],
   "blocks": [
