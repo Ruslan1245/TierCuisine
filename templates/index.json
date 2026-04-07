@@ -383,6 +383,7 @@
     },
     "tier_cuisine_kitchen_video_9fgtAa": {
       "type": "tier-cuisine-kitchen-video",
+      "disabled": true,
       "name": "TC kitchen video",
       "settings": {
         "padding_top_desktop": 80,
