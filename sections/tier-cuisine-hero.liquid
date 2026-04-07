@@ -7,15 +7,11 @@
   assign sizes_half = '(min-width: 750px) 50vw, 100vw'
   assign alt_left = shop.name
   assign alt_right = shop.name
-  assign alt_heading = shop.name
   if section.settings.image_left != blank
     assign alt_left = section.settings.image_left.alt | default: shop.name
   endif
   if section.settings.image_right != blank
     assign alt_right = section.settings.image_right.alt | default: shop.name
-  endif
-  if section.settings.heading_svg != blank
-    assign alt_heading = section.settings.heading_svg.alt | default: shop.name
   endif
 %}
 
@@ -47,14 +43,7 @@
       <div class="tier-cuisine-hero__content">
         {%- if section.settings.heading_svg != blank -%}
           <div class="tier-cuisine-hero__title-wrap">
-            {{
-              section.settings.heading_svg
-              | image_url: width: 2000
-              | image_tag:
-                class: 'tier-cuisine-hero__title-svg',
-                loading: 'lazy',
-                alt: alt_heading
-            }}
+            {{ section.settings.heading_svg | strip | raw }}
           </div>
         {%- endif -%}
 
@@ -191,7 +180,7 @@
     max-width: 100%;
   }
 
-  .tier-cuisine-hero__title-svg {
+  .tier-cuisine-hero__title-wrap svg {
     display: block;
     max-width: min(100%, 420px);
     height: auto;
@@ -366,9 +355,11 @@
       "content": "Content (left column)"
     },
     {
-      "type": "image_picker",
+      "type": "textarea",
       "id": "heading_svg",
-      "label": "Heading (SVG or image)"
+      "label": "Heading SVG markup",
+      "placeholder": "<svg>...</svg>",
+      "info": "Paste the full SVG code for the heading logo."
     },
     {
       "type": "richtext",
