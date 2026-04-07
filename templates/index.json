@@ -373,6 +373,10 @@
         "padding_bottom_mobile": 40,
         "heading": "<p>Unser Erfolg: Ganz einfach!</p><p>Nur pure, <em>ehrliche Zutaten</em></p><p><em>in Lebensmittelqualität</em></p>",
         "image_compare_a": "shopify://shop_images/ingredient_center.png",
+        "image_float_tl": "shopify://shop_images/ingredient_1.png",
+        "image_float_bl": "shopify://shop_images/ingredient_2.png",
+        "image_float_tr": "shopify://shop_images/ingredient_3.png",
+        "image_float_br": "shopify://shop_images/ingredient_4.png",
         "button_label": "Mehr über unsere Zutaten erfahren",
         "button_link": ""
       }
