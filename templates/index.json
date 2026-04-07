@@ -123,11 +123,22 @@
             "button_link": "",
             "button_background": "#d2bd92"
           }
+        },
+        "left_product_8iy8UP": {
+          "type": "left_product",
+          "settings": {
+            "image": "shopify://shop_images/dual_grid_3.png",
+            "title": "Katzen Probier- & Spar-Sets",
+            "button_label": "KATZE",
+            "button_link": "",
+            "button_background": "#d2bd92"
+          }
         }
       },
       "block_order": [
         "left_product_WH33HF",
-        "left_product_KUwzJR"
+        "left_product_KUwzJR",
+        "left_product_8iy8UP"
       ],
       "name": "Tier Cuisine dual grid",
       "settings": {
