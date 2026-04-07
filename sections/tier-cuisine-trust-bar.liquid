@@ -1,0 +1,167 @@
+<div class="section section--full-width tier-cuisine-trust-bar" style="--tctb-bg: {{ section.settings.background_color }};">
+  <div class="tier-cuisine-trust-bar__viewport">
+    <div class="tier-cuisine-trust-bar__track">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'item' -%}
+            <div class="tier-cuisine-trust-bar__item" {{ block.shopify_attributes }}>
+              {%- if block.settings.badge_svg != blank -%}
+                <div class="tier-cuisine-trust-bar__badge">
+                  {{ block.settings.badge_svg | strip | raw }}
+                </div>
+              {%- endif -%}
+
+              <div class="tier-cuisine-trust-bar__row">
+                {%- if block.settings.icon_svg != blank -%}
+                  <span class="tier-cuisine-trust-bar__icon" aria-hidden="true">
+                    {{ block.settings.icon_svg | strip | raw }}
+                  </span>
+                {%- endif -%}
+
+                {%- if block.settings.label != blank -%}
+                  <span class="tier-cuisine-trust-bar__label">{{ block.settings.label | escape }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .tier-cuisine-trust-bar {
+    background: var(--tctb-bg, #f9f5ed);
+    width: 100%;
+  }
+
+  .tier-cuisine-trust-bar__viewport {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .tier-cuisine-trust-bar__track {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 61px;
+    min-height: 64px;
+    height: 64px;
+    width: max-content;
+    min-width: 100%;
+    padding-inline: max(1rem, env(safe-area-inset-left)) max(1rem, env(safe-area-inset-right));
+    box-sizing: border-box;
+  }
+
+  .tier-cuisine-trust-bar__item {
+    position: relative;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tier-cuisine-trust-bar__badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    line-height: 0;
+    transform: translate(20%, -20%);
+    pointer-events: none;
+  }
+
+  .tier-cuisine-trust-bar__badge svg {
+    display: block;
+    width: var(--tctb-badge-size, 18px);
+    height: var(--tctb-badge-size, 18px);
+  }
+
+  .tier-cuisine-trust-bar__row {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .tier-cuisine-trust-bar__icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+  }
+
+  .tier-cuisine-trust-bar__icon svg {
+    display: block;
+    max-height: 40px;
+    max-width: 40px;
+    width: auto;
+    height: auto;
+  }
+
+  .tier-cuisine-trust-bar__label {
+    font-family: var(--font-body--family);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 130%;
+    text-align: center;
+    color: #000;
+    white-space: nowrap;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tier Cuisine trust bar",
+  "tag": "section",
+  "class": "section-wrapper",
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f9f5ed"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "icon_svg",
+          "label": "Icon SVG",
+          "placeholder": "<svg>...</svg>"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Text"
+        },
+        {
+          "type": "textarea",
+          "id": "badge_svg",
+          "label": "Badge SVG (optional)",
+          "info": "Shown at the top right when filled (e.g. checkmark).",
+          "placeholder": "<svg>...</svg>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tier Cuisine trust bar",
+      "category": "Banners"
+    }
+  ]
+}
+{% endschema %}
