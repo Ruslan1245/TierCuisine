@@ -143,13 +143,24 @@
             "button_link": "",
             "button_background": "#665750"
           }
+        },
+        "right_product_XhnXjx": {
+          "type": "right_product",
+          "settings": {
+            "image": "shopify://shop_images/dual_grid_right_2.png",
+            "title": "Nassfutter",
+            "button_label": "HUND",
+            "button_link": "",
+            "button_background": "#665750"
+          }
         }
       },
       "block_order": [
         "left_product_WH33HF",
         "left_product_KUwzJR",
         "left_product_8iy8UP",
-        "right_product_TjUwag"
+        "right_product_TjUwag",
+        "right_product_XhnXjx"
       ],
       "name": "Tier Cuisine dual grid",
       "settings": {
