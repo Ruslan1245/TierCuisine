@@ -1,0 +1,615 @@
+{% liquid
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+  assign widths = '375, 550, 750, 1100, 1500, 2200, 3000, 3840'
+  assign sizes_half = '(min-width: 750px) 50vw, 100vw'
+  assign alt_left = shop.name
+  assign alt_right = shop.name
+  assign alt_product = shop.name
+  if section.settings.image_left != blank
+    assign alt_left = section.settings.image_left.alt | default: shop.name
+  endif
+  if section.settings.image_right != blank
+    assign alt_right = section.settings.image_right.alt | default: shop.name
+  endif
+  if section.settings.product_image != blank
+    assign alt_product = section.settings.product_image.alt | default: shop.name
+  endif
+%}
+
+<div
+  class="section section--full-width tier-cuisine-sale-promo"
+  style="
+    --tc-sale-pad-top-d: {{ section.settings.padding_top_desktop }}px;
+    --tc-sale-pad-bot-d: {{ section.settings.padding_bottom_desktop }}px;
+    --tc-sale-pad-top-m: {{ section.settings.padding_top_mobile }}px;
+    --tc-sale-pad-bot-m: {{ section.settings.padding_bottom_mobile }}px;
+    --tc-sale-min-h: {{ section.settings.section_min_height }}px;
+    --tc-sale-right-bg: {{ section.settings.right_column_bg }};
+  "
+>
+  <div class="tier-cuisine-sale-promo__grid">
+    <div class="tier-cuisine-sale-promo__col tier-cuisine-sale-promo__col--left">
+      <div class="tier-cuisine-sale-promo__media">
+        {%- if section.settings.image_left != blank -%}
+          {{
+            section.settings.image_left
+            | image_url: width: 2400
+            | image_tag:
+              width: section.settings.image_left.width,
+              widths: widths,
+              height: section.settings.image_left.height,
+              sizes: sizes_half,
+              loading: 'lazy',
+              fetchpriority: fetch_priority,
+              class: 'tier-cuisine-sale-promo__img',
+              alt: alt_left
+          }}
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.left_text != blank -%}
+        <div class="tier-cuisine-sale-promo__left-text rte">
+          {{ section.settings.left_text }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="tier-cuisine-sale-promo__col tier-cuisine-sale-promo__col--right">
+      {%- if section.settings.image_right != blank -%}
+        <div class="tier-cuisine-sale-promo__media tier-cuisine-sale-promo__media--bg">
+          {{
+            section.settings.image_right
+            | image_url: width: 2400
+            | image_tag:
+              width: section.settings.image_right.width,
+              widths: widths,
+              height: section.settings.image_right.height,
+              sizes: sizes_half,
+              loading: 'lazy',
+              fetchpriority: fetch_priority,
+              class: 'tier-cuisine-sale-promo__img',
+              alt: alt_right
+          }}
+        </div>
+      {%- endif -%}
+
+      <div class="tier-cuisine-sale-promo__right-inner">
+        <div class="tier-cuisine-sale-promo__circle-stage">
+          <div class="tier-cuisine-sale-promo__circle-wrap">
+            {%- if section.settings.circle_ring_svg != blank -%}
+              <div class="tier-cuisine-sale-promo__circle-ring" aria-hidden="true">
+                {{ section.settings.circle_ring_svg | strip | raw }}
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.product_image != blank -%}
+              <div class="tier-cuisine-sale-promo__circle-product">
+                {{
+                  section.settings.product_image
+                  | image_url: width: 800
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'tier-cuisine-sale-promo__product-img',
+                    widths: '200, 300, 400, 600, 800',
+                    sizes: '(min-width: 750px) 22vw, 55vw',
+                    alt: alt_product,
+                    width: section.settings.product_image.width,
+                    height: section.settings.product_image.height
+                }}
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.badge_text != blank -%}
+              <div class="tier-cuisine-sale-promo__badge" style="--tc-sale-badge-bg: {{ section.settings.badge_bg }};">
+                <span class="tier-cuisine-sale-promo__badge-text">{{ section.settings.badge_text | escape }}</span>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+
+        {%- if section.settings.icons_row_svg != blank -%}
+          <div class="tier-cuisine-sale-promo__icons-row">
+            {{ section.settings.icons_row_svg | strip | raw }}
+          </div>
+        {%- endif -%}
+
+        <div class="tier-cuisine-sale-promo__actions">
+          {%- if section.settings.button_1_label != blank -%}
+            <a
+              class="tier-cuisine-hero__btn"
+              href="{% if section.settings.button_1_link != blank %}{{ section.settings.button_1_link }}{% else %}#{% endif %}"
+              {% if section.settings.button_1_link == blank %}
+                aria-disabled="true"
+              {% endif %}
+            >
+              <span class="tier-cuisine-hero__btn-label">{{ section.settings.button_1_label | escape }}</span>
+              <span class="tier-cuisine-hero__btn-icon" aria-hidden="true">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 36.6667C29.2047 36.6667 36.6666 29.2048 36.6666 20C36.6666 10.7953 29.2047 3.33337 20 3.33337C10.7952 3.33337 3.33331 10.7953 3.33331 20C3.33331 29.2048 10.7952 36.6667 20 36.6667Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M20 26.6667L26.6667 20L20 13.3334" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M13.3333 20H26.6666" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+          {%- endif -%}
+
+          {%- if section.settings.button_2_label != blank -%}
+            <a
+              class="tier-cuisine-hero__btn"
+              href="{% if section.settings.button_2_link != blank %}{{ section.settings.button_2_link }}{% else %}#{% endif %}"
+              {% if section.settings.button_2_link == blank %}
+                aria-disabled="true"
+              {% endif %}
+            >
+              <span class="tier-cuisine-hero__btn-label">{{ section.settings.button_2_label | escape }}</span>
+              <span class="tier-cuisine-hero__btn-icon" aria-hidden="true">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 36.6667C29.2047 36.6667 36.6666 29.2048 36.6666 20C36.6666 10.7953 29.2047 3.33337 20 3.33337C10.7952 3.33337 3.33331 10.7953 3.33331 20C3.33331 29.2048 10.7952 36.6667 20 36.6667Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M20 26.6667L26.6667 20L20 13.3334" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M13.3333 20H26.6666" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .tier-cuisine-sale-promo {
+    padding-block-start: var(--tc-sale-pad-top-m);
+    padding-block-end: var(--tc-sale-pad-bot-m);
+  }
+
+  @media screen and (min-width: 750px) {
+    .tier-cuisine-sale-promo {
+      padding-block-start: var(--tc-sale-pad-top-d);
+      padding-block-end: var(--tc-sale-pad-bot-d);
+    }
+  }
+
+  .tier-cuisine-sale-promo__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    width: 100%;
+    min-height: var(--tc-sale-min-h, 560px);
+  }
+
+  .tier-cuisine-sale-promo__col {
+    position: relative;
+    min-height: min(50svh, 28rem);
+    overflow: hidden;
+  }
+
+  .tier-cuisine-sale-promo__col--right {
+    background: var(--tc-sale-right-bg, #e8dfd4);
+  }
+
+  .tier-cuisine-sale-promo__media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .tier-cuisine-sale-promo__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .tier-cuisine-sale-promo__left-text {
+    position: relative;
+    z-index: 1;
+    align-self: flex-start;
+    width: 100%;
+    max-width: 36rem;
+    padding: clamp(1rem, 3vw, 2.5rem);
+    box-sizing: border-box;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: clamp(1.75rem, 5vw, 3.5rem);
+    line-height: 130%;
+    text-align: right;
+    color: #fff;
+  }
+
+  @media screen and (min-width: 750px) {
+    .tier-cuisine-sale-promo__left-text {
+      font-size: 56px;
+    }
+  }
+
+  .tier-cuisine-sale-promo__left-text p {
+    margin: 0;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    text-align: inherit;
+    color: inherit;
+  }
+
+  .tier-cuisine-sale-promo__left-text em,
+  .tier-cuisine-sale-promo__left-text i {
+    font-family: var(--second-family);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .tier-cuisine-sale-promo__col--left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
+  .tier-cuisine-sale-promo__right-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    box-sizing: border-box;
+    gap: 0;
+  }
+
+  .tier-cuisine-sale-promo__circle-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .tier-cuisine-sale-promo__circle-wrap {
+    position: relative;
+    width: min(88vw, 420px);
+    aspect-ratio: 1;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tier-cuisine-sale-promo__circle-ring {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .tier-cuisine-sale-promo__circle-ring svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .tier-cuisine-sale-promo__circle-product {
+    position: relative;
+    z-index: 1;
+    width: 58%;
+    height: 58%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tier-cuisine-sale-promo__product-img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .tier-cuisine-sale-promo__badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    transform: translate(8%, -8%);
+    width: clamp(4.5rem, 18vw, 7rem);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--tc-sale-badge-bg, var(--tiercuisine-brightgreen-500));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem;
+    box-sizing: border-box;
+  }
+
+  .tier-cuisine-sale-promo__badge-text {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 4vw, 2.9375rem);
+    line-height: 130%;
+    text-align: center;
+    color: #000;
+  }
+
+  @media screen and (min-width: 750px) {
+    .tier-cuisine-sale-promo__badge-text {
+      font-size: 47px;
+    }
+  }
+
+  .tier-cuisine-sale-promo__icons-row {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: min(100%, 28rem);
+    margin-top: -1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .tier-cuisine-sale-promo__icons-row svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .tier-cuisine-sale-promo__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: clamp(1.25rem, 3vw, 2rem);
+    width: 100%;
+  }
+
+  .tier-cuisine-sale-promo .tier-cuisine-hero__btn {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    box-sizing: border-box;
+    width: 256px;
+    max-width: 100%;
+    height: 62px;
+    padding: 11px 10px;
+    background: #000;
+    color: #fff;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: clamp(1rem, 2.8vw, 1.5rem);
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .tier-cuisine-sale-promo .tier-cuisine-hero__btn:hover {
+    opacity: 0.88;
+  }
+
+  .tier-cuisine-sale-promo .tier-cuisine-hero__btn[aria-disabled='true'] {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .tier-cuisine-sale-promo .tier-cuisine-hero__btn-label {
+    flex: 0 1 auto;
+  }
+
+  .tier-cuisine-sale-promo .tier-cuisine-hero__btn-icon {
+    flex-shrink: 0;
+    display: flex;
+    line-height: 0;
+  }
+
+  .tier-cuisine-sale-promo .tier-cuisine-hero__btn-icon svg {
+    display: block;
+  }
+
+  @media screen and (max-width: 749px) {
+    .tier-cuisine-sale-promo__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .tier-cuisine-sale-promo__col {
+      min-height: min(55svh, 26rem);
+    }
+
+    .tier-cuisine-sale-promo__left-text {
+      text-align: right;
+    }
+
+    .tier-cuisine-sale-promo__actions {
+      flex-direction: column;
+      max-width: 20rem;
+    }
+
+    .tier-cuisine-sale-promo .tier-cuisine-hero__btn {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .tier-cuisine-sale-promo .tier-cuisine-hero__btn {
+      font-size: 24px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tier Cuisine sale promo",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Padding — desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Padding — mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "section_min_height",
+      "min": 320,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "label": "Min height (row)",
+      "default": 560
+    },
+    {
+      "type": "header",
+      "content": "Left column (50%)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_left",
+      "label": "Background image"
+    },
+    {
+      "type": "richtext",
+      "id": "left_text",
+      "label": "Text (bottom right on image)",
+      "default": "<p>TierCuisine Herbst-Sale</p><p><em>Schnappe dir jetzt noch leckere Angebote!</em></p>"
+    },
+    {
+      "type": "header",
+      "content": "Right column (50%)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right",
+      "label": "Optional background image",
+      "info": "If empty, solid color is used."
+    },
+    {
+      "type": "color",
+      "id": "right_column_bg",
+      "label": "Background color (no image)",
+      "default": "#e8dfd4"
+    },
+    {
+      "type": "textarea",
+      "id": "circle_ring_svg",
+      "label": "Circle frame SVG",
+      "placeholder": "<svg>...</svg>",
+      "info": "Outer ring / white circle artwork."
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image (center)"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "50%"
+    },
+    {
+      "type": "color",
+      "id": "badge_bg",
+      "label": "Badge background",
+      "default": "#c7cc93"
+    },
+    {
+      "type": "textarea",
+      "id": "icons_row_svg",
+      "label": "Icons row SVG",
+      "placeholder": "<svg>...</svg>",
+      "info": "Slightly overlaps the white circle."
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "button_1_label",
+      "label": "Button 1 label",
+      "default": "Für Katzen"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Button 1 link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_label",
+      "label": "Button 2 label",
+      "default": "Für Hunde"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Button 2 link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tier Cuisine sale promo",
+      "category": "Banners"
+    }
+  ]
+}
+{% endschema %}
