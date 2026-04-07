@@ -278,7 +278,55 @@
         "padding_bottom_mobile": 30,
         "badge_text": "PRODUKTE",
         "heading": "<p>Tierfutter, so naturlich wie selbstgekocht,<br/> das Hunde und Katzen lieben</p>",
-        "button_label": "Zum Produkt"
+        "button_label": "Zum Produkt",
+        "footer_link_label": "Alle Produkte ansehen",
+        "footer_link": ""
+      }
+    },
+    "tier_cuisine_mission_tgdAtx": {
+      "type": "tier-cuisine-mission",
+      "blocks": {
+        "feature_dCwWBH": {
+          "type": "feature",
+          "settings": {
+            "circle_background": "#e8dfd4",
+            "icon_svg": "",
+            "text": "<p>Nur natürliche Zutaten</p>"
+          }
+        },
+        "feature_tctWYb": {
+          "type": "feature",
+          "settings": {
+            "circle_background": "#e8dfd4",
+            "icon_svg": "",
+            "text": "<p>100% Lebensmittelqualität</p>"
+          }
+        },
+        "feature_DCCmBi": {
+          "type": "feature",
+          "settings": {
+            "circle_background": "#e8dfd4",
+            "icon_svg": "",
+            "text": "<p>Hergestellt in Deutschland</p>"
+          }
+        }
+      },
+      "block_order": [
+        "feature_dCwWBH",
+        "feature_tctWYb",
+        "feature_DCCmBi"
+      ],
+      "name": "TC mission",
+      "settings": {
+        "padding_top_desktop": 92,
+        "padding_bottom_desktop": 174,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "badge_text": "Unsere Mission",
+        "title": "<p>Bestes Futter. Echter Genuss für glückliche & gesunde Tiere</p>",
+        "subtitle": "<p>Add your subtitle text here.</p>",
+        "button_label": "Über Uns",
+        "button_link": ""
       }
     },
     "product_list_fa6P9H": {
@@ -565,6 +613,7 @@
     "tier_cuisine_dual_products_K6bCRr",
     "tier_cuisine_sale_promo_z6Rqx4",
     "tier_cuisine_products_carousel_pwTLDj",
+    "tier_cuisine_mission_tgdAtx",
     "product_list_fa6P9H",
     "section_GAeaWB"
   ]
