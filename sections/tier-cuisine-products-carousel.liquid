@@ -1,0 +1,468 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+<div
+  class="section section--full-width tier-cuisine-products-carousel"
+  id="TierCuisineProductsCarousel-{{ section.id }}"
+  style="
+    --tc-pc-pad-top-d: {{ section.settings.padding_top_desktop }}px;
+    --tc-pc-pad-bot-d: {{ section.settings.padding_bottom_desktop }}px;
+    --tc-pc-pad-top-m: {{ section.settings.padding_top_mobile }}px;
+    --tc-pc-pad-bot-m: {{ section.settings.padding_bottom_mobile }}px;
+  "
+>
+  <div class="tier-cuisine-products-carousel__inner page-width">
+    {%- if section.settings.badge_text != blank -%}
+      <p class="tier-cuisine-products-carousel__badge">{{ section.settings.badge_text | escape }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.heading != blank -%}
+      <div class="tier-cuisine-products-carousel__heading rte">
+        {{ section.settings.heading }}
+      </div>
+    {%- endif -%}
+
+    <div class="tier-cuisine-products-carousel__slider-wrap">
+      <div class="swiper tier-cuisine-products-carousel__swiper" data-tc-products-swiper>
+        <div class="swiper-wrapper">
+          {%- for block in section.blocks -%}
+            {%- assign product_ref = block.settings.product -%}
+            <div class="swiper-slide" {{ block.shopify_attributes }}>
+              <article class="tier-cuisine-products-carousel__card" style="--tc-card-bg: {{ block.settings.card_bg }};">
+                <a
+                  class="tier-cuisine-products-carousel__image-link"
+                  href="{% if product_ref != blank %}{{ product_ref.url }}{% elsif block.settings.fallback_link != blank %}{{ block.settings.fallback_link }}{% else %}#{% endif %}"
+                >
+                  {%- if block.settings.image != blank -%}
+                    {{
+                      block.settings.image
+                      | image_url: width: 900
+                      | image_tag:
+                        class: 'tier-cuisine-products-carousel__img',
+                        loading: 'lazy',
+                        widths: '220, 340, 480, 680, 900',
+                        sizes: '(min-width: 1200px) 22vw, (min-width: 750px) 30vw, 80vw',
+                        alt: block.settings.image.alt | default: block.settings.product_title
+                    }}
+                  {%- elsif product_ref != blank and product_ref.featured_image != blank -%}
+                    {{
+                      product_ref.featured_image
+                      | image_url: width: 900
+                      | image_tag:
+                        class: 'tier-cuisine-products-carousel__img',
+                        loading: 'lazy',
+                        widths: '220, 340, 480, 680, 900',
+                        sizes: '(min-width: 1200px) 22vw, (min-width: 750px) 30vw, 80vw',
+                        alt: product_ref.featured_image.alt | default: product_ref.title
+                    }}
+                  {%- endif -%}
+                </a>
+
+                {%- if block.settings.category != blank -%}
+                  <p class="tier-cuisine-products-carousel__category">{{ block.settings.category | escape }}</p>
+                {%- endif -%}
+
+                {%- assign display_title = block.settings.product_title -%}
+                {%- if display_title == blank and product_ref != blank -%}
+                  {%- assign display_title = product_ref.title -%}
+                {%- endif -%}
+                {%- if display_title != blank -%}
+                  <h3 class="tier-cuisine-products-carousel__title">{{ display_title | escape }}</h3>
+                {%- endif -%}
+
+                {%- if product_ref != blank -%}
+                  <p class="tier-cuisine-products-carousel__price">{{ product_ref.selected_or_first_available_variant.price | money }}</p>
+                {%- else -%}
+                  <p class="tier-cuisine-products-carousel__price">{{ block.settings.fallback_price | escape }}</p>
+                {%- endif -%}
+
+                <a
+                  class="tier-cuisine-products-carousel__btn"
+                  href="{% if product_ref != blank %}{{ product_ref.url }}{% elsif block.settings.fallback_link != blank %}{{ block.settings.fallback_link }}{% else %}#{% endif %}"
+                >
+                  {{ section.settings.button_label | escape }}
+                </a>
+              </article>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <div class="tier-cuisine-products-carousel__scrollbar" data-tc-products-scrollbar></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<script>
+  (() => {
+    const sectionId = 'TierCuisineProductsCarousel-{{ section.id }}';
+
+    const init = () => {
+      const root = document.getElementById(sectionId);
+      if (!root || root.dataset.tcSwiperReady === 'true') return;
+      if (typeof window.Swiper === 'undefined') return;
+
+      const container = root.querySelector('[data-tc-products-swiper]');
+      const scrollbar = root.querySelector('[data-tc-products-scrollbar]');
+      if (!container) return;
+
+      root.dataset.tcSwiperReady = 'true';
+
+      const swiper = new window.Swiper(container, {
+        slidesPerView: 1.15,
+        spaceBetween: 12,
+        watchOverflow: true,
+        speed: 700,
+        scrollbar: {
+          el: scrollbar,
+          draggable: true
+        },
+        breakpoints: {
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 16
+          },
+          990: {
+            slidesPerView: 3,
+            spaceBetween: 20
+          },
+          1300: {
+            slidesPerView: 4,
+            spaceBetween: 20
+          }
+        }
+      });
+
+      root._tcProductsSwiper = swiper;
+    };
+
+    const waitAndInit = () => {
+      if (typeof window.Swiper !== 'undefined') {
+        init();
+      } else {
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts += 1;
+          if (typeof window.Swiper !== 'undefined') {
+            clearInterval(timer);
+            init();
+          }
+          if (attempts > 40) clearInterval(timer);
+        }, 100);
+      }
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', waitAndInit, { once: true });
+    } else {
+      waitAndInit();
+    }
+
+    document.addEventListener('shopify:section:load', (event) => {
+      if (event.target.querySelector('#' + sectionId)) {
+        waitAndInit();
+      }
+    });
+
+    document.addEventListener('shopify:section:unload', (event) => {
+      const root = event.target.querySelector('#' + sectionId);
+      const swiper = root?._tcProductsSwiper;
+      if (swiper) {
+        swiper.destroy(true, true);
+        root.dataset.tcSwiperReady = 'false';
+      }
+    });
+  })();
+</script>
+
+{% stylesheet %}
+  .tier-cuisine-products-carousel {
+    padding-block-start: var(--tc-pc-pad-top-m);
+    padding-block-end: var(--tc-pc-pad-bot-m);
+  }
+
+  @media screen and (min-width: 750px) {
+    .tier-cuisine-products-carousel {
+      padding-block-start: var(--tc-pc-pad-top-d);
+      padding-block-end: var(--tc-pc-pad-bot-d);
+    }
+  }
+
+  .tier-cuisine-products-carousel__badge {
+    margin: 0 0 38px;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    color: #000;
+    text-transform: uppercase;
+  }
+
+  .tier-cuisine-products-carousel__heading.rte {
+    margin: 0;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: clamp(2rem, 5vw, 2.9375rem);
+    line-height: 130%;
+    text-align: center;
+    color: #000;
+  }
+
+  @media screen and (min-width: 750px) {
+    .tier-cuisine-products-carousel__heading.rte {
+      font-size: 47px;
+    }
+  }
+
+  .tier-cuisine-products-carousel__heading.rte p {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    text-align: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+  }
+
+  .tier-cuisine-products-carousel__slider-wrap {
+    margin-top: 50px;
+  }
+
+  .tier-cuisine-products-carousel__card {
+    background: var(--tc-card-bg, #f2eee7);
+    padding: 1.25rem 1rem 1rem;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tier-cuisine-products-carousel__image-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 7px;
+    min-height: 15rem;
+    text-decoration: none;
+  }
+
+  .tier-cuisine-products-carousel__img {
+    width: 100%;
+    max-width: 240px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .tier-cuisine-products-carousel__category {
+    margin: 0;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #000;
+  }
+
+  .tier-cuisine-products-carousel__title {
+    margin: 0.1rem 0 0;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: clamp(1.5rem, 3.2vw, 1.8125rem);
+    line-height: 130%;
+    letter-spacing: 0.18em;
+    text-align: center;
+    color: #000;
+    text-transform: uppercase;
+  }
+
+  @media screen and (min-width: 750px) {
+    .tier-cuisine-products-carousel__title {
+      font-size: 29px;
+    }
+  }
+
+  .tier-cuisine-products-carousel__price {
+    margin: 0.35rem 0 0;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    color: #000;
+  }
+
+  .tier-cuisine-products-carousel__btn {
+    margin-top: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 222px;
+    max-width: 100%;
+    height: 50px;
+    padding: 11px 10px;
+    box-sizing: border-box;
+    background: var(--tc-almost-black-500);
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 24px;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .tier-cuisine-products-carousel__scrollbar {
+    margin-top: 22px;
+    height: 2px;
+    background: #dbdbdb;
+  }
+
+  .tier-cuisine-products-carousel__scrollbar .swiper-scrollbar-drag {
+    background: var(--tc-almost-black-500);
+    border-radius: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .tier-cuisine-products-carousel__badge {
+      margin-bottom: 1rem;
+    }
+
+    .tier-cuisine-products-carousel__slider-wrap {
+      margin-top: 1.5rem;
+    }
+
+    .tier-cuisine-products-carousel__btn {
+      font-size: 20px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "TC products slider",
+  "tag": "section",
+  "class": "section-wrapper",
+  "max_blocks": 16,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Padding - desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Padding - mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 30
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Top badge text",
+      "default": "PRODUKTE"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Title",
+      "default": "<p>Tierfutter, so naturlich wie selbstgekocht, das Hunde und Katzen lieben</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Zum Produkt"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Product slide",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "color",
+          "id": "card_bg",
+          "label": "Card background",
+          "default": "#f2eee7"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom image (optional)"
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category text",
+          "default": "VITALITY KATZEN SNACK"
+        },
+        {
+          "type": "text",
+          "id": "product_title",
+          "label": "Custom product title (optional)",
+          "default": "IMMUN BOOST"
+        },
+        {
+          "type": "text",
+          "id": "fallback_price",
+          "label": "Fallback price (if product not selected)",
+          "default": "12,99 EUR"
+        },
+        {
+          "type": "url",
+          "id": "fallback_link",
+          "label": "Fallback link (if product not selected)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TC products slider",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}
